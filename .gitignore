@@ -12,6 +12,9 @@
 !/log/.keep
 /tmp
 
+# Ignore ruby version
+/.ruby-version
+
 # Ignore environment variables
 /.env
 
