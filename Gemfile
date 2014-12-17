@@ -35,6 +35,12 @@ gem 'thin'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Use omniauth for authentication
+gem 'omniauth-google-oauth2'
+
+# Use paperclip for file attachments
+gem 'paperclip', '~>4.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
