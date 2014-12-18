@@ -4,4 +4,7 @@ class SearchController < ApplicationController
         
     end
     
+    def index
+        @courses = Course.search(params[:course])
+    end
 end

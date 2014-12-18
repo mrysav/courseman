@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy', :as => :logout
   get "/auth/:provider/callback" => "sessions#create"
   
+  get 'search' => 'search#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
