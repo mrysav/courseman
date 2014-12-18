@@ -9,6 +9,7 @@ class CreateUmdCourses < ActiveRecord::Migration
       t.string :notes
 
       t.belongs_to :course
+      
       t.timestamps null: false
     end
   end

@@ -1,13 +1,23 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
+      
+    # omniauth-able properties
       t.string :provider
       t.string :uid
       t.string :name
       t.string :email
       t.string :image
-
+      
+    # optional information properties
+      t.string :umnid
+      t.string :major
+      t.string :minor
+      t.string :study_term
+      
+    # other properties  
       t.boolean :admin
+      t.belongs_to :university
 
       t.timestamps null: false
     end

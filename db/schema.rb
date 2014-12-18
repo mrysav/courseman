@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217173807) do
+ActiveRecord::Schema.define(version: 20141217204429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "courses", force: true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.string   "program"
+    t.string   "language"
+    t.integer  "university_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "locations", force: true do |t|
     t.string   "city"
@@ -22,6 +32,30 @@ ActiveRecord::Schema.define(version: 20141217173807) do
     t.integer  "university_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "reviews", force: true do |t|
+    t.string   "dept"
+    t.datetime "date_sent"
+    t.datetime "date_due"
+    t.datetime "date_received"
+    t.string   "note"
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "umd_courses", force: true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.string   "dept"
+    t.datetime "approved"
+    t.string   "approved_by"
+    t.string   "notes"
+    t.integer  "course_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "universities", force: true do |t|
@@ -36,9 +70,14 @@ ActiveRecord::Schema.define(version: 20141217173807) do
     t.string   "name"
     t.string   "email"
     t.string   "image"
+    t.string   "umnid"
+    t.string   "major"
+    t.string   "minor"
+    t.string   "study_term"
     t.boolean  "admin"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "university_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end
