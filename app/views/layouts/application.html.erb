@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>IEO Course Database</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+    <title>IEO Course Database</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
 </head>
 <body>
     
@@ -39,11 +39,16 @@
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
         <% end %>
     
-        <div id="nav_box">
-            
+        <div id="nav_bar">
+            <a class="nav_tab">Search courses</a>
+            <a class="nav_tab">Submit course for review</a>
         </div>
+        
+        <div id="page_yield">
 
-        <%= yield %>
+            <%= yield %>
+        
+        </div>
 
     </div>
 

@@ -19,7 +19,7 @@ body {
 }
 
 #top_bar {
-    height: 60px;
+    overflow: auto;
 }
 
 #user_box {
@@ -44,6 +44,7 @@ body {
 #content {
     margin-left: auto;
     margin-right: auto;
+    width: 1024px;
 }
 
 #header {
@@ -62,4 +63,30 @@ body {
     color: green;
     border: 1px solid green;
     background-color: #7CFC00;
+}
+
+#nav_bar {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.nav_tab {
+    /* border: 1px solid #000000; */
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    background-color: #F0F0F0;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+.nav_tab:hover {
+    background-color: #E0E0E0;
+}
+
+#page_yield {
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #F0F0F0;
 }
