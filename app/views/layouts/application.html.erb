@@ -7,8 +7,45 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+    
+    <div id="top_bar">
+        <div id="user_box">
+            <% if current_user %>
+            <%= image_tag current_user.image, :id => 'user_picture' %>
+            <% else %>
+            <%= image_tag "moodle.png", :id => 'user_picture' %>
+            <% end %>
+        
+            <div id="user_name">
+                <% if current_user %>
+                <%= current_user.name %><br>
+                <%= link_to "sign out", logout_path %>
+                <% else %>
+                Not signed in!<br>
+                <%= link_to "sign in", login_path %>
+                <% end %>
+            </div>
+        </div>
+    
+    </div>
+    
+    <div id="content">
+    
+        <div id="header">
+            <h1>IEO Course Equivalency Database!</h1>
+        </div>
+        
+        <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <% end %>
+    
+        <div id="nav_box">
+            
+        </div>
 
-<%= yield %>
+        <%= yield %>
+
+    </div>
 
 </body>
 </html>
