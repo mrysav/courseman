@@ -41,6 +41,10 @@
     
         <div id="nav_bar">
             <%= link_to 'Search Courses', search_path, :class => "nav_tab" %>
+            <% if current_user && current_user.admin %>
+                <%= link_to 'Reviews', reviews_path, :class => "nav_tab" %>
+            <% end %>
+            <%= link_to 'Submit a review', new_review_path, :class => "nav_tab" %>
         </div>
         
         <div id="page_yield">

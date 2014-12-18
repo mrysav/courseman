@@ -1,0 +1,9 @@
+<h2>reviews</h2>
+<ul>
+    <% for review in @reviews %>
+    <li>
+        <p><%= review.course.name %> (<%= review.course.umd_courses[0].name %>)</p>
+    </li>
+    <% end %>
+</ul>
+
