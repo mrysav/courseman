@@ -3,7 +3,6 @@ class CreateCourses < ActiveRecord::Migration
     create_table :courses do |t|
       t.string :code
       t.string :name
-      t.string :program
       t.string :language
 
       t.belongs_to :university

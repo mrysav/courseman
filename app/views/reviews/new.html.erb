@@ -1,19 +1,51 @@
-<div style = 'width: 50%; text-align: right'>
 
-<%= form_tag('/reviews', method: :post) do %>
-<%= label_tag 'Department for Review:' %><%= text_field_tag :dept %><br>
-<%= label_tag 'Program provider:' %><%= text_field_tag :provider %><br>
-<%= label_tag 'Program name:' %><%= text_field_tag :program %><br>
-<%= label_tag 'Program term:' %><%= text_field_tag :term %><br>
-<% universities = University.all.collect {|u| [u.name, u.id] }
-   universities.unshift(['Add a new university', '0'])
-%>
-<%= select(:university, :id, universities, {include_blank: 'Select a university'}, :onchange => 'toggleUniversityInfo();' ) %><br>
-<div id="university_info" style="visibility: hidden">
-<%= label_tag 'University name:' %><%= text_field_tag :university_name %><br>
-<%= label_tag 'University city:' %><%= text_field_tag :university_city %><br>
-<%= label_tag 'University country:' %><%= text_field_tag :university_country %><br>
-</div>
-<% end %>
+<div style = 'width: 50%; text-align: right;'>
+
+    <%= form_for @review do |review_form| %>
+    <%= review_form.label 'Department for Review:' %><%= review_form.text_field :dept %><br>
+    <%= review_form.label 'Program provider:' %><%= review_form.text_field :provider %><br>
+    <%= review_form.label 'Program name:' %><%= review_form.text_field :program_name %><br>
+    <%= review_form.label 'Program term:' %><%= review_form.text_field :program_term %><br>
+
+    <%= review_form.fields_for :course, Course.new do |course_form| %>
+
+    <%= course_form.fields_for :university, University.new do |uni_form| %>
+
+    <div id="get_university">
+        <%= uni_form.select(:id, @universities, {include_blank: 'Select a university'}) %>
+        <%= link_to "Add university...", '#', :id => :add_university_link %><br>
+    </div>
+
+    <div id="add_university">
+        <%= uni_form.label 'University name:' %><%= uni_form.text_field :name %><br>
+    </div>
+    
+    <%= uni_form.fields_for :locations, Location.new do |location_form| %>
+    
+    <div id="get_location">
+        <%= location_form.select(:id, @locations, {include_blank: 'Select a location'}) %>
+        <%= link_to "Add location...", '#', :id => :add_location_link %><br>
+    </div>
+    
+    <div id="add_location">
+        <%= location_form.label 'University city:' %><%= location_form.text_field :city %><br>
+        <%= location_form.label 'University country:' %><%= location_form.text_field :country %><br>
+    </div>
+    
+    <% end %>
+    
+    <% end %>
+    
+    
+    <%= course_form.label 'Course name:' %><%= course_form.text_field :name %><br>
+    <%= course_form.label 'Course code:' %><%= course_form.text_field :code %><br>
+    <%= course_form.label 'Language of Instruction:' %><%= course_form.text_field :language %><br>
+    
+    
+    <% end %>
+    
+    <%= review_form.submit :'Submit Review' %>
+    
+    <% end %>
 
 </div>

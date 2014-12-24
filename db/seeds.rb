@@ -32,16 +32,22 @@ file.each do |row|
     lib_ed_cat_ids = row[12]
     approved_name = row[13]
     approved_date = row[14]
+    syllabus = row[15]
     
     begin
     
         university = University.find_by_name(uni_name) || University.create(name: uni_name)
         location = university.locations.find_by_city_and_country(city_name, country_name) || university.locations.create(city: city_name, country: country_name)
     
-        course = university.courses.find_by_name(course_name) || university.courses.create(code: course_code, name: course_name, program: provider, language: language)
-        umd_course = course.umd_courses.find_by_dept_and_code(dept, umd_course_code) || course.umd_courses.create(code: umd_course_code, name: umd_course_name, dept: dept, notes: note, approved: approved_date, approved_by: approved_name)
+        lib_eds = []
+        if(lib_ed_cats)
+            lib_eds = lib_ed_cats.split(';')
+        end
     
-        review = course.reviews.find_by_dept(dept) || course.reviews.create(dept: dept, date_received: approved_date)
+        course = university.courses.find_by_name(course_name) || university.courses.create(code: course_code, name: course_name, language: language)
+        umd_course = course.umd_courses.find_by_dept_and_code(dept, umd_course_code) || course.umd_courses.create(code: umd_course_code, name: umd_course_name, dept: dept, notes: note, lib_eds: lib_eds, approved: approved_date, approved_by: approved_name)
+    
+        review = course.reviews.find_by_dept(dept) || course.reviews.create(dept: dept, provider: provider, date_received: approved_date)
     
     rescue Exception => e
         puts e.message

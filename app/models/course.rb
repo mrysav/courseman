@@ -4,6 +4,8 @@ class Course < ActiveRecord::Base
     has_many :users, through: :reviews
     has_many :umd_courses
     
+    accepts_nested_attributes_for :university
+    
     def self.search(search)
         if search
             self.where('name ILIKE ?', "%#{search}%")

@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20141217204429) do
   create_table "courses", force: true do |t|
     t.string   "code"
     t.string   "name"
-    t.string   "program"
     t.string   "language"
     t.integer  "university_id"
     t.datetime "created_at",    null: false
@@ -40,6 +39,9 @@ ActiveRecord::Schema.define(version: 20141217204429) do
     t.datetime "date_due"
     t.datetime "date_received"
     t.string   "note"
+    t.string   "provider"
+    t.string   "program_name"
+    t.string   "program_term"
     t.integer  "user_id"
     t.integer  "course_id"
     t.datetime "created_at",    null: false
@@ -53,6 +55,7 @@ ActiveRecord::Schema.define(version: 20141217204429) do
     t.datetime "approved"
     t.string   "approved_by"
     t.string   "notes"
+    t.string   "lib_eds",                  array: true
     t.integer  "course_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

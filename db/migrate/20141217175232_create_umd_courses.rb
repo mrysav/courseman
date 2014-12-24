@@ -7,6 +7,7 @@ class CreateUmdCourses < ActiveRecord::Migration
       t.datetime :approved
       t.string :approved_by
       t.string :notes
+      t.string :lib_eds, array: true
 
       t.belongs_to :course
       
