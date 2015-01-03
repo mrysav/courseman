@@ -7,6 +7,7 @@ ready = ->
             
     $('#add_university_link').click (e) ->
         $('#get_university').hide(400)
+        $('#university_id').val('')
         $('#add_university').show(400)
         
 $(document).ready(ready)

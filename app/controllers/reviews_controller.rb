@@ -15,6 +15,17 @@ class ReviewsController < ApplicationController
     def create
         @review = current_user.reviews.create(review_params)
         
+        @university = University.find_by_id(params[:university_id])
+        
+        if(@university == nil)
+            @university = University.create(university_params)
+            if !@university.save
+                render 'new'
+            end
+        end
+        
+        @review.course.university = @university
+        
         if @review.save
             redirect_to @review
         else
@@ -28,8 +39,11 @@ class ReviewsController < ApplicationController
         params.require(:review).permit(:id, :dept, :date_sent, :date_due, 
                                        :date_received, :note, :program_sponsor, 
                                        :program_name, :program_term, 
-                                       course_attributes: [:id, :name, :code, :language, :university_id,
-                                           university_attributes: [:id, :name, :city, :country]])
+                                       course_attributes: [:id, :name, :code, :language])
+    end
+    
+    def university_params
+        params.require(:university).permit(:name, :city, :country)
     end
 
 end
