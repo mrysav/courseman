@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.1.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0.rc2'
+gem 'rails', '~> 4.2.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -28,10 +28,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
+
+gem 'rack-timeout'
 
 # Use thin as the app server
-gem 'thin'
+# gem 'thin'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
