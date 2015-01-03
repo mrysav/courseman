@@ -8,8 +8,8 @@ class ReviewsController < ApplicationController
 
     def new
         @review = current_user.reviews.new
-        @universities = University.all.collect {|u| [u.name, u.id] }
-        @locations = [] 
+        @universities = University.all.collect {|u| [(u.name || '(no name)') + '  (' + (u.city || '(no city)') + ', ' + (u.country || '(no country)') + ')', u.id] }
+        @universities.sort! { |x,y| x[0] <=> y[0] }
     end
     
     def create
@@ -25,12 +25,11 @@ class ReviewsController < ApplicationController
     private
     
     def review_params
-        params.require(:review).permit(:dept, :date_sent, :date_due, 
-                                       :date_received, :note, :provider, 
+        params.require(:review).permit(:id, :dept, :date_sent, :date_due, 
+                                       :date_received, :note, :program_sponsor, 
                                        :program_name, :program_term, 
-                                       course_attributes: [:name, :code, :language, 
-                                           university_attributes: [:id, :name, 
-                                               locations_attributes: [:id, :city, :country]]])
+                                       course_attributes: [:id, :name, :code, :language, :university_id,
+                                           university_attributes: [:id, :name, :city, :country]])
     end
 
 end

@@ -13,11 +13,10 @@ class CreateUsers < ActiveRecord::Migration
       t.string :umnid
       t.string :major
       t.string :minor
-      t.string :study_term
+      t.string :collegiate_unit
       
     # other properties  
       t.boolean :admin
-      t.belongs_to :university
 
       t.timestamps null: false
     end

@@ -1,8 +1,9 @@
 class Course < ActiveRecord::Base
     belongs_to :university
+    
     has_many :reviews
     has_many :users, through: :reviews
-    has_many :umd_courses
+    has_many :umd_courses, through: :reviews
     
     accepts_nested_attributes_for :university
     

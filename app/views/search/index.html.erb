@@ -12,7 +12,7 @@
 <ul>
     <% for course in @courses %>
     <li>
-        <p><%= course.name %> (<%= course.university.name %>, <%= course.university.locations[0].city %>, <%= course.university.locations[0].country %>)</p>
+        <p><%= course.name %> (<%= course.university.name %>, <%= course.university.city %>, <%= course.university.country %>)</p>
     </li>
     <% end %>
 </ul>

@@ -36,8 +36,7 @@ file.each do |row|
     
     begin
     
-        university = University.find_by_name(uni_name) || University.create(name: uni_name)
-        location = university.locations.find_by_city_and_country(city_name, country_name) || university.locations.create(city: city_name, country: country_name)
+        university = University.find_by_name_and_city_and_country(uni_name, city_name, country_name) || University.create(name: uni_name, city: city_name, country: country_name)
     
         lib_eds = []
         if(lib_ed_cats)
@@ -45,9 +44,11 @@ file.each do |row|
         end
     
         course = university.courses.find_by_name(course_name) || university.courses.create(code: course_code, name: course_name, language: language)
-        umd_course = course.umd_courses.find_by_dept_and_code(dept, umd_course_code) || course.umd_courses.create(code: umd_course_code, name: umd_course_name, dept: dept, notes: note, lib_eds: lib_eds, approved: approved_date, approved_by: approved_name)
+        
+        review = course.reviews.find_by_dept(dept) || course.reviews.create(dept: dept, program_sponsor: provider, date_received: approved_date)
+                
+        umd_course = UmdCourse.create(review_id: review.id, code: umd_course_code, name: umd_course_name, designator: dept, notes: note, lib_eds: lib_eds, approved: approved_date, approved_by: approved_name)
     
-        review = course.reviews.find_by_dept(dept) || course.reviews.create(dept: dept, provider: provider, date_received: approved_date)
     
     rescue Exception => e
         puts e.message

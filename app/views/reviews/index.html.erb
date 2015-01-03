@@ -2,8 +2,7 @@
 <ul>
     <% for review in @reviews %>
     <li>
-        <p><%= review.course.name %> (<%= review.course.umd_courses[0].name %>)</p>
+        <p><%= (review.course.name || "no course") %> (<%= (review.university.name || "no university") %>)</p>
     </li>
     <% end %>
 </ul>
-

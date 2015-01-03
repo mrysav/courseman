@@ -4,6 +4,9 @@ class CreateCourses < ActiveRecord::Migration
       t.string :code
       t.string :name
       t.string :language
+      
+      # optional
+      t.string :credits
 
       t.belongs_to :university
 

@@ -16,58 +16,54 @@ ActiveRecord::Schema.define(version: 20141217204429) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "courses", force: true do |t|
+  create_table "courses", force: :cascade do |t|
     t.string   "code"
     t.string   "name"
     t.string   "language"
+    t.string   "credits"
     t.integer  "university_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
-  create_table "locations", force: true do |t|
-    t.string   "city"
-    t.string   "country"
-    t.integer  "university_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  create_table "reviews", force: true do |t|
+  create_table "reviews", force: :cascade do |t|
     t.string   "dept"
     t.datetime "date_sent"
     t.datetime "date_due"
     t.datetime "date_received"
     t.string   "note"
-    t.string   "provider"
+    t.string   "program_sponsor"
     t.string   "program_name"
     t.string   "program_term"
     t.integer  "user_id"
     t.integer  "course_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  create_table "umd_courses", force: true do |t|
+  create_table "umd_courses", force: :cascade do |t|
     t.string   "code"
     t.string   "name"
-    t.string   "dept"
+    t.string   "designator"
     t.datetime "approved"
     t.string   "approved_by"
     t.string   "notes"
     t.string   "lib_eds",                  array: true
-    t.integer  "course_id"
+    t.string   "credits"
+    t.integer  "review_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "universities", force: true do |t|
+  create_table "universities", force: :cascade do |t|
     t.string   "name"
+    t.string   "city"
+    t.string   "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
@@ -76,11 +72,10 @@ ActiveRecord::Schema.define(version: 20141217204429) do
     t.string   "umnid"
     t.string   "major"
     t.string   "minor"
-    t.string   "study_term"
+    t.string   "collegiate_unit"
     t.boolean  "admin"
-    t.integer  "university_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

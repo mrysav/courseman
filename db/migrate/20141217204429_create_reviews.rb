@@ -6,7 +6,7 @@ class CreateReviews < ActiveRecord::Migration
       t.datetime :date_due
       t.datetime :date_received
       t.string :note
-      t.string :provider
+      t.string :program_sponsor
       t.string :program_name
       t.string :program_term
       

@@ -4,29 +4,10 @@
 
 ready = ->
     $('#add_university').hide()
-    
-    $('#review_university_attributes_id').change (e) ->            
-        if $('#review_university_attributes_id').val() != ''
-            $('#get_location').show()       
-            $.ajax '/locations',
-              type: 'GET'
-              dataType: 'script'
-              data: {
-                university_id: $("#review_university_attributes_id option:selected").val()
-              }
-              error: (jqXHR, textStatus, errorThrown) ->
-                console.log("AJAX Error: #{textStatus}")
-              success: (data, textStatus, jqXHR) ->
-                console.log("Dynamic country select OK!")
-                
-        else
-            $('#get_location').hide(400)
             
     $('#add_university_link').click (e) ->
         $('#get_university').hide(400)
-        $('#get_location').hide(400)
         $('#add_university').show(400)
-        $('#add_location').show(400)
         
 $(document).ready(ready)
 $(document).on('page:load', ready)

@@ -7,22 +7,21 @@
     <%= review_form.label 'Program name:' %><%= review_form.text_field :program_name %><br>
     <%= review_form.label 'Program term:' %><%= review_form.text_field :program_term %><br>
 
-    <%= review_form.fields_for :university, University.new do |uni_form| %>
+    <%= review_form.fields_for :course, Course.new do |course_form| %>
 
     <div id="get_university">
-        <%= uni_form.select(:id, @universities, {include_blank: 'Select a university'}) %>
+        <%= course_form.select(:university_id, @universities, {include_blank: 'Select a university'}) %>
         <%= link_to "Add university...", '#', :id => :add_university_link %><br>
     </div>
 
     <div id="add_university">
+        <%= course_form.fields_for :university, University.new do |uni_form| %>
         <%= uni_form.label 'University name:' %><%= uni_form.text_field :name %><br>
         <%= uni_form.label 'University city:' %><%= uni_form.text_field :city %><br>
         <%= uni_form.label 'University country:' %><%= uni_form.text_field :country %><br>
+        <% end %>
     </div>
     
-    <% end %>
-    
-    <%= review_form.fields_for :course, Course.new do |course_form| %>
     
     <%= course_form.label 'Course name:' %><%= course_form.text_field :name %><br>
     <%= course_form.label 'Course code:' %><%= course_form.text_field :code %><br>

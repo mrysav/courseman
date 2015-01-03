@@ -1,3 +1,5 @@
 class UmdCourse < ActiveRecord::Base
-    belongs_to :course
+    belongs_to :review
+    
+    has_one :course, through: :review
 end
