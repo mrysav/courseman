@@ -20,3 +20,6 @@
 
 # Ignore foreman config
 /.foreman
+
+# Ignore seeds file
+/courses.csv
