@@ -2,14 +2,12 @@
 <div style = 'width: 50%; text-align: right;'>
 
     <%= form_for @review do |review_form| %>
-    <%= review_form.label 'Department for Review:' %><%= review_form.text_field :dept %><br>
-    <%= review_form.label 'Program provider:' %><%= review_form.text_field :provider %><br>
+    <%= review_form.label 'UMD Department for Review:' %><%= review_form.text_field :dept %><br>
+    <%= review_form.label 'Program sponsor:' %><%= review_form.text_field :program_sponsor %><br>
     <%= review_form.label 'Program name:' %><%= review_form.text_field :program_name %><br>
     <%= review_form.label 'Program term:' %><%= review_form.text_field :program_term %><br>
 
-    <%= review_form.fields_for :course, Course.new do |course_form| %>
-
-    <%= course_form.fields_for :university, University.new do |uni_form| %>
+    <%= review_form.fields_for :university, University.new do |uni_form| %>
 
     <div id="get_university">
         <%= uni_form.select(:id, @universities, {include_blank: 'Select a university'}) %>
@@ -18,24 +16,13 @@
 
     <div id="add_university">
         <%= uni_form.label 'University name:' %><%= uni_form.text_field :name %><br>
-    </div>
-    
-    <%= uni_form.fields_for :locations, Location.new do |location_form| %>
-    
-    <div id="get_location">
-        <%= location_form.select(:id, @locations, {include_blank: 'Select a location'}) %>
-        <%= link_to "Add location...", '#', :id => :add_location_link %><br>
-    </div>
-    
-    <div id="add_location">
-        <%= location_form.label 'University city:' %><%= location_form.text_field :city %><br>
-        <%= location_form.label 'University country:' %><%= location_form.text_field :country %><br>
+        <%= uni_form.label 'University city:' %><%= uni_form.text_field :city %><br>
+        <%= uni_form.label 'University country:' %><%= uni_form.text_field :country %><br>
     </div>
     
     <% end %>
     
-    <% end %>
-    
+    <%= review_form.fields_for :course, Course.new do |course_form| %>
     
     <%= course_form.label 'Course name:' %><%= course_form.text_field :name %><br>
     <%= course_form.label 'Course code:' %><%= course_form.text_field :code %><br>
