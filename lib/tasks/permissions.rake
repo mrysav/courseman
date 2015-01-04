@@ -1,13 +1,13 @@
-namespace :permissions do
+namespace :permissions do    
     desc "Restore admin permissions"
-    task restore: :environment do
+    task :give, [:user] => :environment do |task, args|
         begin
-            rysau001 = User.find_by_email('rysau001@d.umn.edu')
-            rysau001.admin = true
-            rysau001.save
-            print "user rysau001 given admin permissions.\n"
+            user = User.find_by_email(args.user + '@d.umn.edu')
+            user.admin = true
+            user.save
+            print "user " + args.user + " given admin permissions.\n"
         rescue
-            print "user rysau001 doesn't exist!"
+            print "user " + args.user + " doesn't exist!\n"
         end
     end
 
