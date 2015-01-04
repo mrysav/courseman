@@ -5,3 +5,44 @@
 #university_id {
     width: 150px;
 }
+
+#reviews_nav_bar {
+    width: 100%;
+    text-align: left;
+}
+
+.reviews_nav_tab {
+    background-color: #FFFFFF;
+    margin: 10px;
+    padding: 10px;
+}
+
+#reviews_box {
+    background-color: #FFFFFF;
+    padding: 10px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#page_links {
+    overflow: auto;
+}
+
+#prev_link {
+    float: left;
+}
+
+#next_link {
+    float: right;
+}
+
+.review_message {
+    padding: 5px;
+    margin: 2px;
+    border: 1px solid #0F0F0F;
+}
+
+.review_info_box {
+    padding: 2px;
+    margin: 5px;
+}

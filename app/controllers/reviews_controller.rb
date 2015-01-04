@@ -3,7 +3,32 @@ class ReviewsController < ApplicationController
     before_filter :require_admin_user, :except => [:new, :create]
     
     def index
-        @reviews = Review.all
+        
+        case params[:status]
+        when 'approved'
+            @reviews = Review.where(:status => :approved)
+        when 'pending'
+            @reviews = Review.where(:status => :pending)
+        when 'sent'
+            @reviews = Review.where(:status => [:sent, :resent])
+        else
+            @reviews = Review.where(:status => :pending)
+        end
+        
+        @p = params[:p].to_i || 0
+        
+        if @p < 0
+            redirect_to reviews_path(:status => params[:status], :p => 0)
+        end
+        
+        if @reviews.count > 10 && @p > @reviews.count - 10
+            redirect_to reviews_path(:status => params[:status], :p => @reviews.count - 10)
+        end
+        
+        @p_max = @reviews.count
+        
+        @reviews = @reviews[@p..@p+9]
+        
     end
 
     def new
@@ -25,6 +50,7 @@ class ReviewsController < ApplicationController
         end
         
         @review.course.university = @university
+        @review.status = :pending
         
         if @review.save
             redirect_to @review

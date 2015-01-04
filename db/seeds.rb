@@ -8,9 +8,12 @@
 
 require 'csv'
 
+# account to import reviews under
+user = User.find_by_email('rysau001@d.umn.edu')
+
 # Import data from current course database
 # VERY WEAK IMPORT; DOES NOT OVERWRITE UPDATED DATA
-file = CSV.read("courses.csv")
+file = CSV.read("import/courses.csv")
 
 headers = file.shift
 print headers.inspect + "\n\n\n"
@@ -43,9 +46,9 @@ file.each do |row|
             lib_eds = lib_ed_cats.split(';')
         end
     
-        course = university.courses.find_by_name(course_name) || university.courses.create(code: course_code, name: course_name, language: language)
+        course = university.courses.create(code: course_code, name: course_name, language: language)
         
-        review = course.reviews.find_by_dept(dept) || course.reviews.create(dept: dept, program_sponsor: provider, date_received: approved_date)
+        review = Review.create(dept: dept, program_sponsor: provider, date_received: approved_date, course_id: course.id, status: :approved)
                 
         umd_course = UmdCourse.create(review_id: review.id, code: umd_course_code, name: umd_course_name, designator: dept, notes: note, lib_eds: lib_eds, approved: approved_date, approved_by: approved_name)
     
