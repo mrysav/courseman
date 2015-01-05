@@ -1,42 +1,46 @@
 
 <div id="new_review">
 
-<fieldset id="program_info">
-    <legend>Study Abroad Program Information</legend>
     <%= form_for @review do |review_form| %>
-    <%= review_form.label 'Department for Review:' %><%= review_form.text_field :dept %><br>
-    <%= review_form.label 'Program sponsor:' %><%= review_form.text_field :program_sponsor %><br>
-    <%= review_form.label 'Program name:' %><%= review_form.text_field :program_name %><br>
-    <%= review_form.label 'Program term:' %><%= review_form.text_field :program_term %><br>
+    <%= review_form.label 'Department for Review:', :class => :field_label %> <%= review_form.text_field :dept, :placeholder => 'History, Sociology...', :class => :field_entry %><br>
+    
+    <fieldset class="review_fieldset">
+        <legend class="legend">Study Abroad Program Information</legend>
+        <%= review_form.label 'Program sponsor:', :class => :field_label %><%= review_form.text_field :program_sponsor, :class => :field_entry %>
+        <%= review_form.label 'Program name:', :class => :field_label %><%= review_form.text_field :program_name, :class => :field_entry %>
+        <%= review_form.label 'Program term:', :class => :field_label %><%= review_form.text_field :program_term, :class => :field_entry %>
+        
+        <br>
 
-    <%= review_form.fields_for :course, Course.new do |course_form| %>
+        <div id="get_university">
+            <%= select_tag(:university_id, options_for_select(@universities), {include_blank: 'Select a university'}) %>
+            <%= link_to "Add university...", '#', :id => :add_university_link %><br>
+        </div>
 
-    <div id="get_university">
-        <%= select_tag(:university_id, options_for_select(@universities), {include_blank: 'Select a university'}) %>
-        <%= link_to "Add university...", '#', :id => :add_university_link %><br>
-    </div>
-
-    <div id="add_university">
-        <%= fields_for :university, University.new do |uni_form| %>
-        <%= uni_form.label 'University name:' %><%= uni_form.text_field :name %><br>
-        <%= uni_form.label 'University city:' %><%= uni_form.text_field :city %><br>
-        <%= uni_form.label 'University country:' %><%= uni_form.text_field :country %><br>
+        <div id="add_university">
+            <%= fields_for :university, University.new do |uni_form| %>
+            <%= uni_form.label 'University name:', :class => :field_label %><%= uni_form.text_field :name, :class => :field_entry %>
+            <%= uni_form.label 'University city:', :class => :field_label %><%= uni_form.text_field :city, :class => :field_entry %>
+            <%= uni_form.label 'University country:', :class => :field_label %><%= uni_form.text_field :country, :class => :field_entry %><br>
+            <% end %>
+        </div>
+    </fieldset>
+    
+    <fieldset class="review_fieldset">
+        <legend class="legend">Foreign Course Information</legend>
+    
+        <%= review_form.fields_for :course, Course.new do |course_form| %>
+    
+        <%= course_form.label 'Course name:', :class => :field_label %><%= course_form.text_field :name, :class => :field_entry %>
+        <%= course_form.label 'Course code:', :class => :field_label %><%= course_form.text_field :code, :class => :field_entry %><br><br>
+        <%= course_form.label 'Language of Instruction:', :class => :field_label %><%= course_form.text_field :language, :class => :field_entry %>
+        <br>
+    
+    
         <% end %>
-    </div>
-</fieldset>
+    </fieldset>
     
-<fieldset id="course_info">
-    <legend>Foreign Course Information</legend>
-    
-    <%= course_form.label 'Course name:' %><%= course_form.text_field :name %><br>
-    <%= course_form.label 'Course code:' %><%= course_form.text_field :code %><br>
-    <%= course_form.label 'Language of Instruction:' %><%= course_form.text_field :language %><br>
-    
-    
-    <% end %>
-</fieldset>
-    
-    <%= review_form.submit :'Submit Review' %>
+    <%= review_form.submit :'Submit Review', :id => :submit_review%>
     
     <% end %>
 

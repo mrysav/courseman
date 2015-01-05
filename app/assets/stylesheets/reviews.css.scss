@@ -3,7 +3,59 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #university_id {
-    width: 150px;
+    width: 250px;
+}
+
+#new_review {
+    text-align: center;
+}
+
+.review_fieldset {
+    text-align: left;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.legend {
+    font-weight: bold;
+}
+
+.field_label {
+    
+}
+
+.field_entry {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #000000;
+    //background-color: inherit;
+    font-size: medium;
+    margin-right: 10px;
+    margin-left: 5px;
+    padding: 2px;
+}
+
+#get_university {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#add_university {
+    margin-top: 10px;
+}
+
+#submit_review {
+    font-size: medium;
+    border: 1px solid #000000;
+    background-color: #f0f0f0;
+    margin-top: 20px;
+}
+
+#review_note {
+    float: right;
+    height: 150px;
+    width: 50%;
 }
 
 #reviews_nav_bar {
