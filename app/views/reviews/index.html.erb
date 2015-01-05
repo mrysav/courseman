@@ -18,25 +18,7 @@
 <% end %>
 </div>
 
-<% @reviews.each do |review| %>
-
-<div class="review_message" id="review.<%= review.id %>" >
-    <b><%= (review.course.code || '') + ' ' + review.course.name %></b><br>
-    <%= (review.university.name || 'no university') + ' (' + (review.university.city || '') + ', ' + (review.university.country || '') + ')' %>
-    <div class="review_info_box">
-        Date submitted: <%= review.created_at %><br>
-        Status: <b><%= review.status.titleize %></b><br>
-        
-        <% if review.status == 'approved' %>
-            
-            Equivalent: <b><%= review.umd_course.designator + ' ' + review.umd_course.code + ': ' + review.umd_course.name %></b><br>
-        
-        <% end %>
-        
-    </div>
-</div>
-
-<% end %>
+<%= render @reviews %>
 
 <% else %>
 

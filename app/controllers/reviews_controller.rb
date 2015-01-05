@@ -53,10 +53,17 @@ class ReviewsController < ApplicationController
         @review.status = :pending
         
         if @review.save
-            redirect_to @review
+            #TODO: redirect to "My Reviews" or similar
+            redirect_to root_path
         else
             render 'new'
         end
+    end
+    
+    def edit
+        @review = Review.find_by_id(params[:id])
+        @universities = University.all.collect {|u| [(u.name || '(no name)') + '  (' + (u.city || '(no city)') + ', ' + (u.country || '(no country)') + ')', u.id] }
+        @universities.sort! { |x,y| x[0] <=> y[0] }
     end
     
     private

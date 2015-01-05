@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback" => "sessions#create"
   
   get '/search' => 'search#index'
-  resources :reviews
+  resources :reviews, except: :show
   
   get '/locations' => 'ajax#university_locations'
 

@@ -1,18 +1,16 @@
 
-<div id="new_review">
+<div style = 'width: 50%; text-align: right;'>
 
-<fieldset id="program_info">
-    <legend>Study Abroad Program Information</legend>
     <%= form_for @review do |review_form| %>
     <%= review_form.label 'Department for Review:' %><%= review_form.text_field :dept %><br>
     <%= review_form.label 'Program sponsor:' %><%= review_form.text_field :program_sponsor %><br>
     <%= review_form.label 'Program name:' %><%= review_form.text_field :program_name %><br>
     <%= review_form.label 'Program term:' %><%= review_form.text_field :program_term %><br>
 
-    <%= review_form.fields_for :course, Course.new do |course_form| %>
+    <%= review_form.fields_for @review.course do |course_form| %>
 
     <div id="get_university">
-        <%= select_tag(:university_id, options_for_select(@universities), {include_blank: 'Select a university'}) %>
+        <%= select_tag(:university_id, options_for_select(@universities, selected: @review.university.id)) %>
         <%= link_to "Add university...", '#', :id => :add_university_link %><br>
     </div>
 
@@ -23,10 +21,7 @@
         <%= uni_form.label 'University country:' %><%= uni_form.text_field :country %><br>
         <% end %>
     </div>
-</fieldset>
     
-<fieldset id="course_info">
-    <legend>Foreign Course Information</legend>
     
     <%= course_form.label 'Course name:' %><%= course_form.text_field :name %><br>
     <%= course_form.label 'Course code:' %><%= course_form.text_field :code %><br>
@@ -34,7 +29,6 @@
     
     
     <% end %>
-</fieldset>
     
     <%= review_form.submit :'Submit Review' %>
     
