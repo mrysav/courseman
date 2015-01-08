@@ -2,8 +2,8 @@
     
     <% if current_user && current_user.admin %>
     <div class="review_admin_controls">
-        <%= link_to 'View', edit_review_path(review) %><br>
-        <%= link_to 'Delete', review_path(review), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Edit', edit_review_path(review) %><br>
+        <%= link_to 'Delete', review_path(review), method: :delete, data: { confirm: 'Are you sure? This will delete the corresponding foreign course and UMD course from the database!' } %>
     </div>
     <% end %>
     
@@ -25,10 +25,9 @@
         
         <% end %>
         
-        <% if review.status == ['sent', 'resent'] %>
+        <% if review.status == 'sent' || review.status == 'resent' %>
             
-        Date sent: <%= review.date_sent.strftime('%b %e, %Y') || '' %><br>
-        Date due: <%= review.date_due.strftime('%b %e, %Y') || '' %><br>
+        Last updated: <%= review.updated_at.strftime('%b %e, %Y') %>
         
         <% end %>
         

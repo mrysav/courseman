@@ -1,0 +1,31 @@
+<% if current_user && current_user.admin %>
+Why are you here?!? Head on over to <%= link_to 'reviews', reviews_path %> to see where it's really at.
+<% end %>
+
+<div id="reviews_box">
+
+<div id="page_links">
+<% if @reviews.count > 0 %>
+
+<% if @p > 9 %>
+<%= link_to 'Previous', reviews_path(:status => params[:status], :p => @p - 10), :id => :prev_link %>
+<% end %>
+
+<% if @p + 10 < @p_max %>
+<%= link_to 'Next', reviews_path(:status => params[:status], :p => @p + 10), :id => :next_link %>
+<% end %>
+</div>
+
+<%= render @reviews %>
+
+<% else %>
+
+<div class="review_message" style="text-align: center">
+
+Nothing to see here!
+
+</div>
+
+<% end %>
+
+</div>

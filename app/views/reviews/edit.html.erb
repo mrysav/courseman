@@ -1,5 +1,16 @@
 
-<div id="new_review">
+<div id="edit_review">
+    
+    <% if @review.user %>
+    
+    <fieldset class="review_fieldset">
+        <legend class="legend">Student Information</legend>
+        <%= render @review.user %>
+    </fieldset>
+    
+    <br>
+    
+    <% end %>
 
     <%= form_for @review do |review_form| %>
     <%= review_form.label 'Department for Review:', :class => :field_label %> <%= review_form.text_field :dept, :placeholder => 'History, Sociology...', :class => :field_entry %><br>
@@ -49,9 +60,9 @@
         <%= review_form.radio_button(:status, "sent") %>
         <%= review_form.label(:status_sent, "Sent") %><br>
         <%= review_form.radio_button(:status, "resent") %>
-        <%= review_form.label(:status_pending, "Re-sent") %><br>
+        <%= review_form.label(:status_resent, "Re-sent") %><br>
         <%= review_form.radio_button(:status, "approved") %>
-        <%= review_form.label(:status_sent, "Approved") %>
+        <%= review_form.label(:status_approved, "Approved") %>
         
     </fieldset>
     

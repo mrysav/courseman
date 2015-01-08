@@ -11,8 +11,7 @@ Rails.application.routes.draw do
   
   get '/search' => 'search#index'
   resources :reviews, except: :show
-  
-  get '/locations' => 'ajax#university_locations'
+  get '/my-reviews/' => 'reviews#user'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
