@@ -14,3 +14,8 @@ To get started, go to the URL of the currently running server and get started.
 * Paperclip + dropbox or google drive for storing syllabi
 * User profile editing
 * Advanced local/foreign course + university search
+* Emailing users for updated courses
+
+###Bugs & Feature Requests
+
+Email [Mitchell Rysavy](mailto:rysau001@d.umn.edu)
