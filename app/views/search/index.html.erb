@@ -1,13 +1,18 @@
-<h2>course search</h2>
+<div id="search_form">
+
+<div id="search_header">I'm looking for...</h3>
 
 <form action="<%= search_path %>" method="get" >
-<p>
-    <%= label_tag :course %>:
-    <%= text_field_tag :course, params[:course] %>
+    <%= text_field_tag :course, params[:course], :id => :search_box, :placeholder => "biology, university of worcester, Social Sciences..." %>
     <br>
     <%= submit_tag "Search!", :name => nil %>
-</p>
 </form>
+
+</div>
+
+<% if @courses %>
+
+<div id="search_results">
 
 <ul>
     <% for course in @courses %>
@@ -16,3 +21,7 @@
     </li>
     <% end %>
 </ul>
+
+</div>
+
+<% end %>

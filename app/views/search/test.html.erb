@@ -1,9 +1,9 @@
 <div id="big-box">
 <% if current_user %>
-    hello <%= current_user.name %>. <%= link_to 'log out', logout_path %>.
+    hello <%= current_user.name %> :)
     <% if current_user.admin %>
     <br/>
-    you are an administrator.
+    Watch out, we got an admin up in here!
     <% end %>
 <% else %>
     <%= link_to "log in", login_path %>
