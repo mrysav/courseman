@@ -5,7 +5,8 @@ class SearchController < ApplicationController
     end
     
     def index
-        @courses = Course.full_search(params[:course])
+        @courses = Course.full_search(params[:course]).to_a
+        @courses.keep_if { |c| c.approved? }
     end
 
 end

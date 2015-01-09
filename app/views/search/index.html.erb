@@ -10,18 +10,20 @@
 
 </div>
 
-<% if @courses %>
+<% if params[:course] != nil && params[:course] != '' %>
 
 <div id="search_results">
 
-<ul>
-    <% for course in @courses %>
-    <li>
-        <p><%= course.name %> (<%= course.university.name %>, <%= course.university.city %>, <%= course.university.country %>)</p>
-    </li>
-    <% end %>
-</ul>
+    <% if @courses.count > 0 %>
 
+    <%= render @courses %>
+    
+    <% else %>
+    
+    <div style="text-align: center; margin-top: 20px;">Nothing turned up!</div>
+    
+    <% end %>
+    
 </div>
 
 <% end %>

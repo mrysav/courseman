@@ -1,0 +1,14 @@
+<div class="course_result" id="course.<%= course.id %>" >
+
+<b><%= course.code || '' %> <%= course.name %></b><br>
+<%= course.university.name || 'no university' %> (<%= course.university.city || '' %>, <%= course.university.country || '' %>)
+
+<div class="course_info_box">
+
+Equivalent: <b><%= course.umd_course.designator || '' %> <%= course.umd_course.code || '' %> <%= course.umd_course.name || '' %></b><br>
+Liberal Education Categories: <%= course.umd_course.lib_eds.join(', ') %><br>
+Approved on: <%= course.umd_course.approved.strftime('%b %e, %Y') || '' %>
+
+</div>
+
+</div>
