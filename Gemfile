@@ -44,6 +44,9 @@ gem 'omniauth-google-oauth2'
 # Use paperclip for file attachments
 gem 'paperclip', '~>4.2'
 
+# Use pg_search
+gem 'pg_search'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

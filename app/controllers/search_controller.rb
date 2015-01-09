@@ -5,6 +5,7 @@ class SearchController < ApplicationController
     end
     
     def index
-        @courses = Course.search(params[:course])
+        @courses = Course.full_search(params[:course])
     end
+
 end
