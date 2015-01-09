@@ -11,9 +11,10 @@ To get started, go to the URL of the currently running server and get started.
 
 ###Todo
 
-* Paperclip + dropbox or google drive for storing syllabi
-* User profile editing
-* Advanced local/foreign course + university search
+* Paperclip + dropbox or google drive for storing syllabi (+ add syllabi seeder)
+* user profiles (*done*)
+* Advanced course search (*done*)
+    * Paginate course results
 * Emailing users for updated courses
 
 ###Bugs & Feature Requests
