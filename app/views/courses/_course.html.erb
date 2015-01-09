@@ -7,7 +7,11 @@
 
 Equivalent: <b><%= course.umd_course.designator || '' %> <%= course.umd_course.code || '' %> <%= course.umd_course.name || '' %></b><br>
 Liberal Education Categories: <%= course.umd_course.lib_eds.join(', ') %><br>
-Approved on: <%= course.umd_course.approved.strftime('%b %e, %Y') || '' %>
+Approved on: <%= course.umd_course.approved.strftime('%b %e, %Y') || '' %><br>
+
+<% if course.syllabus.exists? %>
+<%= link_to 'View syllabus', course.syllabus.url %>
+<% end %>
 
 </div>
 

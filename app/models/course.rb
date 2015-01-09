@@ -1,6 +1,9 @@
 class Course < ActiveRecord::Base
     include PgSearch
     
+    has_attached_file :syllabus
+    validates_attachment_content_type :syllabus, :content_type => ["image/jpg", "image/jpeg", "image/png", "application/pdf", "application/zip"]
+    
     belongs_to :university
     
     has_one :review

@@ -12,7 +12,7 @@
     
     <% end %>
 
-    <%= form_for @review do |review_form| %>
+    <%= form_for @review, :html => { :multipart => true } do |review_form| %>
     <%= review_form.label 'Department for Review:', :class => :field_label %> <%= review_form.text_field :dept, :placeholder => 'History, Sociology...', :class => :field_entry %><br>
     
     <fieldset class="review_fieldset">
@@ -45,6 +45,7 @@
         <%= course_form.label 'Course name:', :class => :field_label %><%= course_form.text_field :name, :class => :field_entry %>
         <%= course_form.label 'Course code:', :class => :field_label %><%= course_form.text_field :code, :class => :field_entry %><br><br>
         <%= course_form.label 'Language of Instruction:', :class => :field_label %><%= course_form.text_field :language, :class => :field_entry %>
+        <%= course_form.label 'Syllabus:', :class => :field_label %><%= course_form.file_field :syllabus, :class => :field_entry %>
         <br>
     
     

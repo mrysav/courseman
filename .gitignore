@@ -23,3 +23,6 @@
 
 # Ignore seeds files
 /import
+
+# Ignore paperclip file storage
+/public/system

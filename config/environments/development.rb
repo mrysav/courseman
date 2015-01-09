@@ -40,7 +40,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   
   # Informational Unicorn logging
-  config.logger = Logger.new(STDOUT)
-  config.logger.level = Logger.const_get('INFO')
-  config.log_level    = :info
+  #config.logger = Logger.new(STDOUT)
+  #config.logger.level = Logger.const_get('INFO')
+  #config.log_level    = :info
 end

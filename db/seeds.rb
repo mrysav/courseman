@@ -45,8 +45,15 @@ file.each do |row|
         if(lib_ed_cats)
             lib_eds = lib_ed_cats.split(';')
         end
-    
-        course = university.courses.create(code: course_code, name: course_name, language: language)
+   
+        if syllabus && syllabus != ''
+            syl_file = File.new('import/syllabi/' + syllabus)
+            course = university.courses.create(code: course_code, name: course_name, language: language, syllabus: syl_file)
+        else
+            course = university.courses.create(code: course_code, name: course_name, language: language)
+        end 
+
+        course = university.courses.create(code: course_code, name: course_name, language: language, syllabus: syl_file)
         
         review = Review.create(dept: dept, program_sponsor: provider, date_received: approved_date, course_id: course.id, status: :approved)
                 
