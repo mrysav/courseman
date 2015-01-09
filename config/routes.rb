@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy', :as => :logout
   get "/auth/:provider/callback" => "sessions#create"
   
+  get 'profile' => 'users#edit', :as => :user
+  put 'profile' => 'users#update'
+  
   get '/search' => 'search#index'
   resources :reviews, except: :show
   get '/my-reviews/' => 'reviews#user'

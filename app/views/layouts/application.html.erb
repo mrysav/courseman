@@ -51,6 +51,10 @@
             <% end %>
             
             <%= link_to 'Submit a review', new_review_path, :class => "nav_tab" %>
+            
+            <% if current_user %>
+                <%= link_to 'My Profile', profile_path, :class => "nav_tab" %>
+            <% end %>
         </div>
         
         <div id="page_yield">

@@ -1,0 +1,25 @@
+<div id="student_profile_box" style="height: 175px">
+    
+    <%= image_tag @user.image, :id => 'student_picture' %>
+    
+    <div id="student_information">
+        <%= form_for @user, method: :put, url: profile_path do |f|  %>
+        
+        <b><%= @user.name %></b><br>
+        Email: <a href="mailto:<%= @user.email %>"><%= @user.email %></a><br>
+        <br>
+        <div style="text-align: right">
+            UMN ID: <%= f.text_field :umnid %><br>
+            Collegiate unit: <%= f.text_field :collegiate_unit %><br>
+            Major: <%= f.text_field :major %><br>
+            Minor: <%= f.text_field :minor %>
+            
+        </div>
+        
+        <br>
+        <%= f.submit 'Update profile', :style => 'margin-left: 50px '%>
+            
+        <% end %>
+    </div>
+    
+</div>

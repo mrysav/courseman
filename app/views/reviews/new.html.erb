@@ -1,3 +1,10 @@
+<% if current_user.incomplete?  %>
+
+<div id="flash_notice">
+Please complete <%= link_to 'your profile', profile_path %> before submitting a review.
+</div>
+<% end %>
+
 
 <div id="new_review">
 
