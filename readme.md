@@ -19,4 +19,4 @@ To get started, go to the URL of the currently running server and get started.
 
 ###Bugs & Feature Requests
 
-Email [Mitchell Rysavy](mailto:rysau001@d.umn.edu)
+Email [Mitchell Rysavy](mailto:rysau001@d.umn.edu) with questions or problems.
