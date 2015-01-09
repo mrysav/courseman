@@ -14,7 +14,7 @@ To get started, go to the URL of the currently running server and get started.
 * Paperclip + dropbox or google drive for storing syllabi (+ add syllabi seeder)
 * user profiles (*done*)
 * Advanced course search (*done*)
-    * Paginate course results
+    * Paginate course results (*done*)
 * Emailing users for updated courses
 
 ###Bugs & Feature Requests

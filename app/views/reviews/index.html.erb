@@ -9,7 +9,7 @@
 <div id="page_links">
 <% if @reviews.count > 0 %>
 
-<% if @p > 9 %>
+<% if @p > 0 %>
 <%= link_to 'Previous', reviews_path(:status => params[:status], :p => @p - 10), :id => :prev_link %>
 <% end %>
 

@@ -1,29 +1,41 @@
 <div id="search_form">
 
-<div id="search_header">I'm looking for a course...</h3>
+    <div id="search_header">I'm looking for a course...</h3>
 
-<form action="<%= search_path %>" method="get" >
-    <%= text_field_tag :course, params[:course], :id => :search_box, :placeholder => "biology, university of worcester, Social Sciences..." %>
-    <br>
-    <%= submit_tag "Search!", :name => nil %>
-</form>
+        <form action="<%= search_path %>" method="get" >
+            <%= text_field_tag :course, params[:course], :id => :search_box, :placeholder => "biology, university of worcester, Social Sciences..." %>
+            <br>
+            <%= submit_tag "Search!", :name => nil %>
+        </form>
 
-</div>
+    </div>
 
-<% if params[:course] != nil && params[:course] != '' %>
+    <% if params[:course] != nil && params[:course] != '' %>
 
-<div id="search_results">
-
-    <% if @courses.count > 0 %>
-
-    <%= render @courses %>
+    <div id="search_results">
     
-    <% else %>
+        <% if @courses.count > 0 %>
     
-    <div style="text-align: center; margin-top: 20px;">Nothing turned up!</div>
+        <div id="page_links">
+
+            <% if @p > 0 %>
+            <%= link_to 'Previous', search_path(:course => params[:course], :p => @p - 10), :id => :prev_link %>
+            <% end %>
+
+            <% if @p + 10 < @p_max %>
+            <%= link_to 'Next', search_path(:course => params[:course], :p => @p + 10), :id => :next_link %>
+            <% end %>
     
+        </div>
+
+        <%= render @courses %>
+    
+        <% else %>
+    
+        <div style="text-align: center; margin-top: 20px;">Nothing turned up!</div>
+    
+        <% end %>
+    
+    </div>
+
     <% end %>
-    
-</div>
-
-<% end %>
