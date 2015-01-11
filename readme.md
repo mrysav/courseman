@@ -11,14 +11,14 @@ To get started, go to the URL of the currently running server and get started.
 
 ###Todo
 
-* Paperclip for storing syllabi
-    * Syllabi seeder (*done*)
-    * Use Google Drive
-* user profiles (*done*)
-* Advanced course search (*done*)
-    * Paginate course results (*done*)
-* Emailing users for updated courses
-* CREATE UMD COURSES!!!
+- [x] Paperclip for storing syllabi
+    - [x] Syllabi seeder
+    - [ ] Use Google Drive
+- [x] user profiles
+- [x] Advanced course search
+    - [x] Paginate course results
+- [ ] Emailing users for updated courses
+- [ ] CREATE UMD COURSES!!!
 
 ###Bugs & Feature Requests
 
