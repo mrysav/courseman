@@ -68,6 +68,7 @@ class ReviewsController < ApplicationController
         @review = Review.find_by_id(params[:id])
         @universities = University.all.collect {|u| [(u.name || '(no name)') + '  (' + (u.city || '(no city)') + ', ' + (u.country || '(no country)') + ')', u.id] }
         @universities.sort! { |x,y| x[0] <=> y[0] }
+        @lib_ed_cats = lib_ed_cats
     end
     
     def update
@@ -86,6 +87,8 @@ class ReviewsController < ApplicationController
         end
         
         @review.course.university = @university
+        
+        @umd_course = params
         
         #TODO: Add proper date logic
         
@@ -132,11 +135,20 @@ class ReviewsController < ApplicationController
         params.require(:review).permit(:id, :dept, :date_sent, :date_due, 
                                        :date_received, :note, :program_sponsor, 
                                        :program_name, :program_term, :status,
-                                       course_attributes: [:id, :name, :code, :language])
+                                       course_attributes: [:id, :name, :code, :language],
+                                       umd_course_attributes: [:designator, :code, :name, :approved_by, :approved, :lib_eds, :notes])
     end
     
     def university_params
         params.require(:university).permit(:name, :city, :country)
+    end
+    
+    def lib_ed_cats
+        ['Category 3','Category 4','Category 5','Category 6','Category 7','Category 8','Category 9',
+                    'Social Science without Lab', 'Social Sciences', 'Humanities', 'Logic and Quantitative Reasoning', 
+                    'Natural Science without Lab', 'Natural Sciences with Lab', 'Global Perspectives', 'International Perspective',
+                    'Sustainability', 'Cultural Diversity in the US', 'Fine Arts', 'Natural Sciences', 'Natural Sciences without Lab',
+                    'Oral Communication and Languages', 'Writing and Information Literacy'].sort!
     end
 
 end

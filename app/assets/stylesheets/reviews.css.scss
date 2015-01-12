@@ -56,9 +56,9 @@
     margin-top: 20px;
 }
 
-#review_note {
+#review_note_box {
     float: right;
-    height: 150px;
+    height: 100px;
     width: 50%;
 }
 
@@ -111,4 +111,9 @@
 
 .review_admin_controls {
     float: right;
+}
+
+#umd_course_notes {
+    height: 75px;
+    width: 400px;
 }

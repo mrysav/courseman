@@ -18,7 +18,7 @@ To get started, go to the URL of the currently running server and get started.
 - [x] Advanced course search
     - [x] Paginate course results
 - [ ] Emailing users for updated courses
-- [ ] CREATE UMD COURSES!!!
+- [x] Create UMD Courses from Review page
 
 ###Bugs & Feature Requests
 
