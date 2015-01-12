@@ -26,6 +26,3 @@
 
 # Ignore paperclip file storage
 /public/system
-
-# Ignore secrets file
-/config/secrets.yml
