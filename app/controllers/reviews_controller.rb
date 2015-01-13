@@ -56,9 +56,14 @@ class ReviewsController < ApplicationController
         # TODO: Tell Postgres that this is the default value somehow
         @review.status = :pending
         
+        @review.umd_course = UmdCourse.create(:review_id => @review.id)
+        
         if @review.save
-            #TODO: redirect to "My Reviews" or similar
-            redirect_to reviews_path
+            if(current_user.admin)
+                redirect_to reviews_path
+            else
+                redirect_to my_reviews_path
+            end
         else
             render 'new'
         end
@@ -88,12 +93,9 @@ class ReviewsController < ApplicationController
         
         @review.course.university = @university
         
-        @umd_course = params
-        
         #TODO: Add proper date logic
         
         if @review.save
-            #TODO: redirect to "My Reviews" or similar
             redirect_to reviews_path
         else
             render 'new'
@@ -135,8 +137,8 @@ class ReviewsController < ApplicationController
         params.require(:review).permit(:id, :dept, :date_sent, :date_due, 
                                        :date_received, :note, :program_sponsor, 
                                        :program_name, :program_term, :status,
-                                       course_attributes: [:id, :name, :code, :language],
-                                       umd_course_attributes: [:designator, :code, :name, :approved_by, :approved, :lib_eds, :notes])
+                                       course_attributes: [:id, :name, :code, :language, :syllabus],
+                                       umd_course_attributes: [:id, :designator, :code, :name, :approved_by, :approved, :notes, :lib_eds => [] ])
     end
     
     def university_params

@@ -40,7 +40,7 @@
     <fieldset class="review_fieldset">
         <legend class="legend">Foreign Course Information</legend>
     
-        <%= review_form.fields_for @review.course do |course_form| %>
+        <%= review_form.fields_for :course, @review.course do |course_form| %>
     
         <%= course_form.label 'Course name:', :class => :field_label %><%= course_form.text_field :name, :class => :field_entry %>
         <%= course_form.label 'Course code:', :class => :field_label %><%= course_form.text_field :code, :class => :field_entry %><br><br>
@@ -71,7 +71,7 @@
     
     <fieldset id="review_umd_equivalent" class="review_fieldset">
         <legend class="legend">UMD Course Equivalent</legend>
-        <%= fields_for :umd_course, @review.umd_course do |umd_form| %>
+        <%= review_form.fields_for :umd_course, @review.umd_course do |umd_form| %>
         <%= umd_form.label 'Designator:', :class => :field_label %><%= umd_form.text_field :designator, :class => :field_entry %>
         <%= umd_form.label 'Course code:', :class => :field_label %><%= umd_form.text_field :code, :class => :field_entry %>
         <%= umd_form.label 'Course name:', :class => :field_label %><%= umd_form.text_field :name, :class => :field_entry %><br><br>
