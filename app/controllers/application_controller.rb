@@ -18,7 +18,8 @@ class ApplicationController < ActionController::Base
   def require_valid_user
       if session[:user_id] == nil || current_user == nil
           respond_to do |format|
-              format.html { redirect_to root_path, :notice => "Must be logged in to do that." }
+              flash[:warning] = "Must be logged in to do that."
+              format.html { redirect_to root_path }
           end
       end
   end
@@ -26,7 +27,8 @@ class ApplicationController < ActionController::Base
   def require_admin_user
       if (current_user && !current_user.admin)
           respond_to do |format|
-              format.html { redirect_to root_path, :notice => "Invalid request." }
+              flash[:warning] = "Insufficient permissions."
+              format.html { redirect_to root_path }
           end
       end
   end

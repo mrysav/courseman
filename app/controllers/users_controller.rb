@@ -7,7 +7,8 @@ class UsersController < ApplicationController
     
     def update
         if current_user.update(user_params)
-            redirect_to profile_path, :notice => "Profile updated successfully."
+            flash[:success] = "Profile updated successfully."
+            redirect_to profile_path
         else
             render 'err'
         end
