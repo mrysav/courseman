@@ -1,41 +1,44 @@
-<div id="search_form">
+<div class="col-md-8 col-md-offset-2">
 
-    <div id="search_header">I'm looking for a course...</h3>
-
-        <form action="<%= search_path %>" method="get" >
-            <%= text_field_tag :course, params[:course], :id => :search_box, :placeholder => "biology, university of worcester, Social Sciences..." %>
-            <br>
-            <%= submit_tag "Search!", :name => nil %>
-        </form>
-
-    </div>
-
-    <% if params[:course] != nil && params[:course] != '' %>
-
-    <div id="search_results">
-    
-        <% if @courses.count > 0 %>
-    
-        <div id="page_links">
-
-            <% if @p > 0 %>
-            <%= link_to 'Previous', search_path(:course => params[:course], :p => @p - 10), :id => :prev_link %>
-            <% end %>
-
-            <% if @p + 10 < @p_max %>
-            <%= link_to 'Next', search_path(:course => params[:course], :p => @p + 10), :id => :next_link %>
-            <% end %>
-    
+    <form role="form" action="<%= search_path %>" method="get" >
+        <div class="form-group">
+            <%= label_tag :course, "I'm looking for a course..." %>
+            <%= text_field_tag :course, params[:course], :class => 'form-control', :placeholder => "biology, university of worcester, Social Sciences..." %>
         </div>
+        
+        <div class="text-center">
+            <%= submit_tag "Search!", :name => nil %>
+        </div>
+    </form>
 
-        <%= render @courses %>
+</div>
+
+<% if params[:course] != nil && params[:course] != '' %>
+
+<div class="col-md-8 col-md-offset-2">
     
-        <% else %>
+    <% if @courses.count > 0 %>
     
-        <div style="text-align: center; margin-top: 20px;">Nothing turned up!</div>
-    
+    <div id="page_links">
+
+        <% if @p > 0 %>
+        <%= link_to 'Previous', search_path(:course => params[:course], :p => @p - 10), :id => :prev_link %>
+        <% end %>
+
+        <% if @p + 10 < @p_max %>
+        <%= link_to 'Next', search_path(:course => params[:course], :p => @p + 10), :id => :next_link %>
         <% end %>
     
     </div>
 
+    <%= render @courses %>
+    
+    <% else %>
+    
+    <div class="text-center" style="margin-top: 2em"><h2>Nothing turned up!</h2></div>
+    
     <% end %>
+    
+</div>
+
+<% end %>

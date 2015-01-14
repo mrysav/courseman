@@ -18,8 +18,12 @@
         <% if review.status == 'approved' %>
             
         Equivalent: <b><%= review.umd_course.designator + ' ' + review.umd_course.code + ': ' + review.umd_course.name %></b><br>
-        Liberal education categories: <%= review.umd_course.lib_eds.join(', ') %><br>
-        Approved by: <%= review.umd_course.approved_by || '' %><br>
+        <% if review.umd_course.lib_eds.reject(&:empty?).count > 0 %>
+        Liberal education categories: <%= review.umd_course.lib_eds.reject(&:empty?).join(', ') %><br>
+        <% end %>
+        <% if review.umd_course.approved_by %>
+        Approved by: <%= review.umd_course.approved_by %><br>
+        <% end %>
         Approved on: <%= review.umd_course.approved.strftime('%b %e, %Y') || '' %><br>
         <!-- <div class="notes_box"><%= review.umd_course.notes %></div> -->
         
