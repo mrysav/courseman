@@ -13,12 +13,8 @@ user = User.find_by_email('rysau001@d.umn.edu')
 
 # Import data from current course database
 # VERY WEAK IMPORT; DOES NOT OVERWRITE UPDATED DATA
-file = CSV.read("import/courses.csv")
 
-headers = file.shift
-print headers.inspect + "\n\n\n"
-
-file.each do |row|
+CSV.foreach("import/courses.csv").each_with_index do |row, i|
     
     provider = row[0]
     country_name = row[1]
@@ -36,6 +32,15 @@ file.each do |row|
     approved_name = row[13]
     approved_date = row[14]
     syllabus = row[15]
+    
+    if provider == "provider_name"
+        next
+    end
+    
+    if approved_date == "0000-00-00"
+        # UNIX epoch
+        approved_date = "1970-01-01"
+    end
     
     begin
     
@@ -61,7 +66,8 @@ file.each do |row|
     
     
     rescue Exception => e
-        puts e.message
-        puts row.join(' | ')
+        puts e.inspect
+        #puts e.backtrace.join("\n")
+        puts 'row ' + (i+1).to_s + ': ' + row.join(' | ') + "\n"
     end
 end
