@@ -10,43 +10,50 @@
     </div>
 </nav>
 
+<% if @reviews.count > 0 %>
+
 <div class="col-md-8 col-md-offset-2">
 
-<div id="top_buttons" style="overflow: auto">
-<% # TODO: abstract the buttons out
-if @reviews.count > 0 %>
+    <nav>
+        <ul class="pager">
 
-<% if @p > 0 %>
-<%= link_to 'Previous', reviews_path(:status => params[:status], :p => @p - 10), :class => "btn btn-default" %>
-<% end %>
+            <% if @p > 0 %>
+            <li class="previous"><a href="<%= reviews_path(:status => params[:status], :p => @p - 10) %>"><span aria-hidden="true">&larr;</span> Previous</a></li>
+            <% end %>
 
-<% if @p + 10 < @p_max %>
-<%= link_to 'Next', reviews_path(:status => params[:status], :p => @p + 10), :class => "btn btn-default pull-right" %>
-<% end %>
-</div>
+            <% if @p + 10 < @p_max %>
+            <li class="next"><a href="<%= reviews_path(:status => params[:status], :p => @p + 10) %>">Next <span aria-hidden="true">&rarr;</span></a></li>
+            <% end %>
 
-<hr>
+        </ul>
+    </nav>
 
-
-<%= render @reviews %>
+    <hr>
 
 
-<div id="bottom_buttons">
-<% if @p > 0 %>
-<%= link_to 'Previous', reviews_path(:status => params[:status], :p => @p - 10), :class => "btn btn-default" %>
-<% end %>
+    <%= render @reviews %>
 
-<% if @p + 10 < @p_max %>
-<%= link_to 'Next', reviews_path(:status => params[:status], :p => @p + 10), :class => "btn btn-default pull-right" %>
-<% end %>
-</div>
+
+    <nav>
+        <ul class="pager">
+
+            <% if @p > 0 %>
+            <li class="previous"><a href="<%= reviews_path(:status => params[:status], :p => @p - 10) %>"><span aria-hidden="true">&larr;</span> Previous</a></li>
+            <% end %>
+
+            <% if @p + 10 < @p_max %>
+            <li class="next"><a href="<%= reviews_path(:status => params[:status], :p => @p + 10) %>">Next <span aria-hidden="true">&rarr;</span></a></li>
+            <% end %>
+
+        </ul>
+    </nav>
 
 </div>
 
 <% else %>
 
 <div class="text-center">
-<h2>Nothing to see here!</h2>
+    <h2>Nothing to see here!</h2>
 </div>
 
 <% end %>

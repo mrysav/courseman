@@ -1,11 +1,11 @@
-<div id="review.<%= review.id %>" >
+<div id="review<%= review.id %>" >
     
     <div class="btn-group pull-right" id="controls">
-        <button type="button" class="btn btn-small btn-default" data-toggle="collapse" data-target="#extra_notes">
+        <button type="button" class="btn btn-small btn-default" data-toggle="collapse" data-target="#notes<%= review.id %>">
             Show Notes
         </button>
         <% if current_user && current_user.admin %>
-        <%= link_to 'Edit', edit_review_path(review), :class => 'btn btn-small btn-default' %>
+        <%= link_to 'View', edit_review_path(review), :class => 'btn btn-small btn-default' %>
         <%= link_to 'Delete', review_path(review), method: :delete, data: { confirm: 'Are you sure? This will delete the corresponding foreign course and UMD course from the database!' }, :class => 'btn btn-small btn-danger' %>
         <% end %>
     </div>
@@ -16,8 +16,7 @@
     Date submitted: <%= review.created_at.strftime('%b %e, %Y') %><br>
     Status: <b><%= review.status.titleize %></b><br>
         
-    <div id="extra_notes" class="collapse">
-        <!-- <div class="notes_box"><%= review.note %></div><br> -->
+    <div id="notes<%= review.id %>" class="collapse">
         
         <% if review.status == 'approved' %>
             
@@ -37,6 +36,10 @@
             
         Last updated: <%= review.updated_at.strftime('%b %e, %Y') %>
         
+        <% end %>
+        
+        <% if review.note != '' && review.note != nil %>
+        <div class="alert alert-info"><%= review.note %></div>
         <% end %>
     
     </div>

@@ -21,19 +21,37 @@
     
     <h2>Results</h2>
     
-    <div id="page_links">
+    <nav>
+        <ul class="pager">
 
-        <% if @p > 0 %>
-        <%= link_to 'Previous', search_path(:course => params[:course], :p => @p - 10), :id => :prev_link %>
-        <% end %>
+            <% if @p > 0 %>
+            <li class="previous"><a href="<%= search_path(:course => params[:course], :p => @p - 10) %>"><span aria-hidden="true">&larr;</span> Previous</a></li>
+            <% end %>
 
-        <% if @p + 10 < @p_max %>
-        <%= link_to 'Next', search_path(:course => params[:course], :p => @p + 10), :id => :next_link %>
-        <% end %>
+            <% if @p + 10 < @p_max %>
+            <li class="next"><a href="<%= search_path(:course => params[:course], :p => @p + 10) %>">Next <span aria-hidden="true">&rarr;</span></a></li>
+            <% end %>
+
+        </ul>
+    </nav>
     
-    </div>
+    <hr>
 
     <%= render @courses %>
+    
+    <nav>
+        <ul class="pager">
+
+            <% if @p > 0 %>
+            <li class="previous"><a href="<%= search_path(:course => params[:course], :p => @p - 10) %>"><span aria-hidden="true">&larr;</span> Previous</a></li>
+            <% end %>
+
+            <% if @p + 10 < @p_max %>
+            <li class="next"><a href="<%= search_path(:course => params[:course], :p => @p + 10) %>">Next <span aria-hidden="true">&rarr;</span></a></li>
+            <% end %>
+
+        </ul>
+    </nav>
     
     <% else %>
     
