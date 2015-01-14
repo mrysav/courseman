@@ -1,18 +1,22 @@
-<div class="review_message" id="review.<%= review.id %>" >
+<div id="review.<%= review.id %>" >
     
-    <% if current_user && current_user.admin %>
-    <div class="review_admin_controls">
-        <%= link_to 'Edit', edit_review_path(review) %><br>
-        <%= link_to 'Delete', review_path(review), method: :delete, data: { confirm: 'Are you sure? This will delete the corresponding foreign course and UMD course from the database!' } %>
+    <div class="btn-group pull-right" id="controls">
+        <button type="button" class="btn btn-small btn-default" data-toggle="collapse" data-target="#extra_notes">
+            Show Notes
+        </button>
+        <% if current_user && current_user.admin %>
+        <%= link_to 'Edit', edit_review_path(review), :class => 'btn btn-small btn-default' %>
+        <%= link_to 'Delete', review_path(review), method: :delete, data: { confirm: 'Are you sure? This will delete the corresponding foreign course and UMD course from the database!' }, :class => 'btn btn-small btn-danger' %>
+        <% end %>
     </div>
-    <% end %>
     
     <b><%= (review.course.code || '') + ' ' + review.course.name %></b><br>
     <%= (review.university.name || 'no university') + ' (' + (review.university.city || '') + ', ' + (review.university.country || '') + ')' %>
-    <div class="review_info_box">
+    <br>
+    Date submitted: <%= review.created_at.strftime('%b %e, %Y') %><br>
+    Status: <b><%= review.status.titleize %></b><br>
         
-        Date submitted: <%= review.created_at.strftime('%b %e, %Y') %><br>
-        Status: <b><%= review.status.titleize %></b><br>
+    <div id="extra_notes" class="collapse">
         <!-- <div class="notes_box"><%= review.note %></div><br> -->
         
         <% if review.status == 'approved' %>
@@ -34,6 +38,7 @@
         Last updated: <%= review.updated_at.strftime('%b %e, %Y') %>
         
         <% end %>
-        
+    
     </div>
 </div>
+<hr>
