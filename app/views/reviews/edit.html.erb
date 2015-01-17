@@ -1,10 +1,9 @@
+<div class="container">
 
-<div id="edit_review">
-    
     <% if @review.user %>
     
-    <fieldset class="review_fieldset">
-        <legend class="legend">Student Information</legend>
+    <fieldset class="row">
+        <legend>Student Information</legend>
         <%= render @review.user %>
     </fieldset>
     
@@ -12,81 +11,118 @@
     
     <% end %>
 
-    <%= form_for @review, :html => { :multipart => true } do |review_form| %>
-    <%= review_form.label 'Department for Review:', :class => :field_label %> <%= review_form.text_field :dept, :placeholder => 'History, Sociology...', :class => :field_entry %><br>
-    
-    <fieldset class="review_fieldset">
-        <legend class="legend">Study Abroad Program Information</legend>
-        <%= review_form.label 'Program sponsor:', :class => :field_label %><%= review_form.text_field :program_sponsor, :class => :field_entry %>
-        <%= review_form.label 'Program name:', :class => :field_label %><%= review_form.text_field :program_name, :class => :field_entry %>
-        <%= review_form.label 'Program term:', :class => :field_label %><%= review_form.text_field :program_term, :class => :field_entry %>
-        
-        <br>
+    <%= form_for @review, :html => { :multipart => true, :role => :form } do |review_form| %>
 
-        <div id="get_university">
-            <%= select_tag(:university_id, options_for_select(@universities, selected: @review.university.id)) %>
-            <%= link_to "Add university...", '#', :id => :add_university_link %><br>
+    <div class="form-group form-horizontal row">
+        <%= review_form.label 'Department for Review', :class => "col-sm-2 col-sm-offset-3 control-label" %>
+        <div class="col-sm-4">
+            <%= review_form.text_field :dept, :placeholder => 'History, Sociology...', :class => "form-control" %>
         </div>
+    </div>
+    
+    <div class="row">
+    
+        <fieldset class="col-md-6">
+            <legend>Study Abroad Program Information</legend>
+    
+            <div class="form-group">
+        
+                <%= review_form.label 'Program sponsor' %>
+                <%= review_form.text_field :program_sponsor, :class => "form-control" %>
+                <%= review_form.label 'Program name' %>
+                <%= review_form.text_field :program_name, :class => "form-control" %>
+                <%= review_form.label 'Program term' %>
+                <%= review_form.text_field :program_term, :class => "form-control" %>
+            </div>
+        </fieldset>
 
-        <div id="add_university">
-            <%= fields_for :university, University.new do |uni_form| %>
-            <%= uni_form.label 'University name:', :class => :field_label %><%= uni_form.text_field :name, :class => :field_entry %>
-            <%= uni_form.label 'University city:', :class => :field_label %><%= uni_form.text_field :city, :class => :field_entry %>
-            <%= uni_form.label 'University country:', :class => :field_label %><%= uni_form.text_field :country, :class => :field_entry %><br>
+        <fieldset class="col-md-6">
+            <legend>University Information</legend>
+            <div id="get_university" class="form-group">
+                <%= label_tag :university_id %>
+                <%= select_tag(:university_id, options_for_select(@universities, selected: @review.university.id), { :class => "form-control" }) %>
+                <div style="margin-top: 15px" class="text-center"><a class="btn btn-default" id="add_university_link">Add university</a></div>
+            </div>
+
+            <div id="add_university" class="form-group">
+                <%= fields_for :university, University.new do |uni_form| %>
+                <%= uni_form.label 'University name' %><%= uni_form.text_field :name, :class => "form-control" %>
+                <%= uni_form.label 'University city' %><%= uni_form.text_field :city, :class => "form-control" %>
+                <%= uni_form.label 'University country' %><%= uni_form.text_field :country, :class => "form-control" %><br>
+                <% end %>
+            </div>
+        </fieldset>
+
+    </div>
+
+    <div class="row">
+    
+        <fieldset class="col-md-6">
+            <legend class="legend">Foreign Course Information</legend>
+    
+            <%= review_form.fields_for :course, @review.course do |course_form| %>
+    
+            <%= course_form.label 'Course name' %><%= course_form.text_field :name, :class => "form-control" %>
+            <%= course_form.label 'Course code' %><%= course_form.text_field :code, :class => "form-control" %>
+            <%= course_form.label 'Language of Instruction' %><%= course_form.text_field :language, :class => "form-control" %>
+            <%= course_form.label 'Syllabus' %><%= course_form.file_field :syllabus %>
+    
             <% end %>
-        </div>
-    </fieldset>
-    
-    <fieldset class="review_fieldset">
-        <legend class="legend">Foreign Course Information</legend>
-    
-        <%= review_form.fields_for :course, @review.course do |course_form| %>
-    
-        <%= course_form.label 'Course name:', :class => :field_label %><%= course_form.text_field :name, :class => :field_entry %>
-        <%= course_form.label 'Course code:', :class => :field_label %><%= course_form.text_field :code, :class => :field_entry %><br><br>
-        <%= course_form.label 'Language of Instruction:', :class => :field_label %><%= course_form.text_field :language, :class => :field_entry %>
-        <%= course_form.label 'Syllabus:', :class => :field_label %><%= course_form.file_field :syllabus, :class => :field_entry %>
-        <br>
-    
-    
-        <% end %>
-    </fieldset>
-    
-    <fieldset class="review_fieldset">
-        <legend class="legend">Status</legend>
-        <div id="review_note_box">
-            <%= review_form.label 'Review notes:' %><br>
-            <%= review_form.text_area :note, :style => "width: 100%; height: 75px;" %>
-        </div>
-        <%= review_form.radio_button(:status, "pending") %>
-        <%= review_form.label(:status_pending, "Pending") %><br>
-        <%= review_form.radio_button(:status, "sent") %>
-        <%= review_form.label(:status_sent, "Sent") %><br>
-        <%= review_form.radio_button(:status, "resent") %>
-        <%= review_form.label(:status_resent, "Re-sent") %><br>
-        <%= review_form.radio_button(:status, "approved") %>
-        <%= review_form.label(:status_approved, "Approved") %>
+        </fieldset>
+
+        <fieldset class="col-md-6">
+            <legend class="legend">Review Status</legend>
+            <div class="col-md-3">
+                <div class="radio">
+                    <%= review_form.radio_button(:status, "pending") %>
+                    <%= review_form.label(:status_pending, "Pending") %>
+                </div>
+                <div class="radio">
+                    <%= review_form.radio_button(:status, "sent") %>
+                    <%= review_form.label(:status_sent, "Sent") %>
+                </div>
+                <div class="radio">
+                    <%= review_form.radio_button(:status, "resent") %>
+                    <%= review_form.label(:status_resent, "Re-sent") %>
+                </div>
+                <div class="radio">
+                    <%= review_form.radio_button(:status, "approved") %>
+                    <%= review_form.label(:status_approved, "Approved") %>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <%= review_form.label 'Review notes' %>
+                <%= review_form.text_area :note, :class => "form-control", :style => "height: 150px" %>
+            </div>
         
-    </fieldset>
+        </fieldset>
+    </div>
     
-    <fieldset id="review_umd_equivalent" class="review_fieldset">
-        <legend class="legend">UMD Course Equivalent</legend>
-        <%= review_form.fields_for :umd_course, @review.umd_course do |umd_form| %>
-        <%= umd_form.label 'Designator:', :class => :field_label %><%= umd_form.text_field :designator, :class => :field_entry %>
-        <%= umd_form.label 'Course code:', :class => :field_label %><%= umd_form.text_field :code, :class => :field_entry %>
-        <%= umd_form.label 'Course name:', :class => :field_label %><%= umd_form.text_field :name, :class => :field_entry %><br><br>
-        <%= umd_form.label 'Approved by:', :class => :field_label %><%= umd_form.text_field :approved_by, :class => :field_entry %>
-        <%= umd_form.label 'Approved on: ', :class => :field_label %><%= umd_form.date_select :approved, :class => :field_entry %><br><br>
-        <div style="float: left">
-            <%= umd_form.label 'Liberal Education Categories: '%><br><%= umd_form.select :lib_eds, @lib_ed_cats, {}, { :multiple => true, :size => 5 }  %>
-        </div>
-        <div style="float: left; margin-left: 40px">
-            <%= umd_form.label 'Course notes: '%><br><%= umd_form.text_area :notes  %>
-        </div>
-        <% end %>
-    </fieldset>
+    <div class="row">
     
-    <%= review_form.submit :'Submit Review', :id => :submit_review%>
+        <fieldset class="col-md-8 col-md-offset-2">
+            <legend class="legend">UMD Course Equivalent</legend>
+            <div class="col-md-6">
+                <%= review_form.fields_for :umd_course, @review.umd_course do |umd_form| %>
+                <%= umd_form.label 'Designator' %><%= umd_form.text_field :designator, :class => "form-control" %>
+                <%= umd_form.label 'Course code' %><%= umd_form.text_field :code, :class => "form-control" %>
+                <%= umd_form.label 'Course name' %><%= umd_form.text_field :name, :class => "form-control" %>
+                <%= umd_form.label 'Approved by' %><%= umd_form.text_field :approved_by, :class => "form-control" %>
+                <%= umd_form.label 'Approved on' %><%= umd_form.date_select :approved, :class => "form-control" %>
+            </div>
+            <div class="col-md-6">
+                <%= umd_form.label 'Lib Ed Categories: '%><%= umd_form.select :lib_eds, @lib_ed_cats, {}, { :multiple => true, :size => 5, :class => "form-control" }  %>
+
+                <%= umd_form.label 'Course notes: '%><%= umd_form.text_area :notes, :class => "form-control", :style => "height: 80px"  %>
+            </div>
+            <% end %>
+        </fieldset>
+    
+    </div>
+
+    <div class="text-center">
+        <%= review_form.submit :'Submit Review', :id => :submit_review, :class => "btn btn-default" %>
+    </div>
     
     <% end %>
 
