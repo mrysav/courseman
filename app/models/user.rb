@@ -2,10 +2,10 @@ class User < ActiveRecord::Base
     has_many :reviews
     
     def incomplete?
-        self.umnid == '' || 
-        self.collegiate_unit == '' || 
-        self.major == '' || 
-        self.minor == ''
+        self.umnid.blank? || 
+        self.collegiate_unit.blank? || 
+        self.major.blank? || 
+        self.minor.blank?
     end
     
     def self.create_with_omniauth(auth)
