@@ -1,25 +1,31 @@
-<div id="student_profile_box" style="height: 175px">
-    
-    <%= image_tag @user.image, :id => 'student_picture' %>
-    
-    <div id="student_information">
-        <%= form_for @user, method: :put, url: profile_path do |f|  %>
-        
-        <b><%= @user.name %></b><br>
-        Email: <a href="mailto:<%= @user.email %>"><%= @user.email %></a><br>
-        <br>
-        <div style="text-align: right">
-            UMN ID: <%= f.text_field :umnid %><br>
-            Collegiate unit: <%= f.text_field :collegiate_unit %><br>
-            Major: <%= f.text_field :major %><br>
-            Minor: <%= f.text_field :minor %>
-            
-        </div>
-        
-        <br>
-        <%= f.submit 'Update profile', :style => 'margin-left: 50px '%>
-            
-        <% end %>
-    </div>
-    
+<%= image_tag @user.image, :class => 'img-responsive col-md-2', :style => "width: 100px" %>
+<div class="col-md-3">
+    <b><%= @user.name %></b><br>
+    Email: <a href="mailto:<%= @user.email %>"><%= @user.email %></a><br>
+    <br>
 </div>
+    
+<%= form_for @user, :html => { :class => "form-horizontal col-md-5", :role => :form }, method: :put, url: profile_path do |f|  %>
+
+<div class="form-group">
+    <label for="umdid" class="col-sm-4 control-label">UMN ID</label>
+    <div class="col-sm-8"><%= f.text_field :umnid, :class => "form-control" %></div>
+</div>
+<div class="form-group">
+    <label for"collegiate_unit" class="col-sm-4 control-label">Collegiate unit</label>
+    <div class="col-sm-8"><%= f.text_field :collegiate_unit, :class => "form-control" %></div>
+</div>
+<div class="form-group">
+    <label for"major" class="col-sm-4 control-label">Major</label>
+    <div class="col-sm-8"><%= f.text_field :major, :class => "form-control" %></div>
+</div>
+<div class="form-group">
+    <label for"minor" class="col-sm-4 control-label">Minor</label>
+    <div class="col-sm-8"><%= f.text_field :minor, :class => "form-control" %></div>
+</div>
+
+<div class="text-center">
+    <%= f.submit 'Update profile', :class => "btn btn-default" %>
+</div>
+            
+<% end %>
