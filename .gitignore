@@ -22,7 +22,8 @@
 /.foreman
 
 # Ignore seeds files
-/import
+/import/courses*
+/import/syllabi
 
 # Ignore paperclip file storage
 /public/system
