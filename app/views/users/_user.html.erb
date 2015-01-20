@@ -1,13 +1,9 @@
-<div id="student_profile_box">
+<%= image_tag current_user.image, :class => 'img-responsive pull-left', :style => 'max-width: 100px; margin-right: 5px' %>
     
-    <%= image_tag current_user.image, :id => 'student_picture' %>
-    
-    <div id="student_information">
-            <b><%= user.name %></b> (ID: <%= user.umnid %>)<br>
-            Email: <a href="mailto:<%= user.email %>"><%= user.email %></a><br>
-            Collegiate unit: <%= user.collegiate_unit %><br>
-            Major: <%= user.major %><br>
-            Minor: <%= user.minor %>
-    </div>
-    
+<div class='pull-left'>
+        <b><%= user.name %></b> (ID: <%= user.umnid %>)<br>
+        Email: <a href="mailto:<%= user.email %>"><%= user.email %></a><br>
+        Collegiate unit: <%= user.collegiate_unit %><br>
+        Major: <%= user.major %><br>
+        Minor: <%= user.minor %>
 </div>
