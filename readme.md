@@ -12,13 +12,21 @@ To get started, go to the URL of the currently running server and get started.
 ###Todo
 
 - [x] Paperclip for storing syllabi
-    - [x] Syllabi seeder
-    - [ ] Use Google Drive
-- [x] user profiles
-- [x] Advanced course search
-    - [x] Paginate course results
-- [ ] Emailing users for updated courses
-- [x] Create UMD Courses from Review page
+    - [x] Seamless import from CSV
+        - [ ] Web-based admin tool
+        - [ ] CSV error + duplicate checking
+        - [ ] Syllabus regex detection + correction
+    - [ ] Use Google Drive for syllabus storage
+- [x] User profile editing
+- [ ] Advanced course search
+    - [ ] Paginate course results using pg_search
+- [ ] Email functionality
+- [ ] Search for review inbox pages
+- [ ] Make it harder to delete reviews
+- [ ] Export entire database admin tool
+- [ ] Print view for reviews
+- [ ] UI changes
+    - [ ] Review inbox nav bar
 
 ###Bugs & Feature Requests
 
