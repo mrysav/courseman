@@ -21,17 +21,17 @@
             </div>
             <div class="collapse navbar-collapse" id="mainNavbar">
                 <ul class="nav navbar-nav" role="tablist">
-                    <li><%= link_to 'Search Courses', search_path %></li>
+                    <li class="<%= 'active' if current_page?(search_path) || current_page?(root_path) %>"><%= link_to 'Search Courses', search_path %></li>
 
                     <% if current_user && current_user.admin %>
-                    <li><%= link_to 'Reviews', reviews_path(:status => :pending) %></li>
+                    <li class="<%= 'active' if current_page?(reviews_path) %>"><%= link_to 'Reviews', reviews_path(:status => :pending) %></li>
                     <% end %>
 
                     <% if current_user && !current_user.admin %>
-                    <li><%= link_to 'My Reviews', my_reviews_path %></li>
+                    <li class="<%= 'active' if current_page?(my_reviews_path) %>"><%= link_to 'My Reviews', my_reviews_path %></li>
                     <% end %>
 
-                    <li><%= link_to 'Submit a review', new_review_path %></li>
+                    <li class="<%= 'active' if current_page?(new_review_path) %>"><%= link_to 'Submit a review', new_review_path %></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <% if current_user %>
