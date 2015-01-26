@@ -14,5 +14,15 @@
  *= require_self
  */
 
+// DEFINE BOOTSTRAP VARIABLES HERE
+
+//$navbar-default-bg: #7a0019;
+//$umn-gold: #ffcc33;
+//$navbar-default-link-color: $umn-gold;
+//$navbar-default-link-hover-color: darken($umn-gold, 20%);
+
+// END BOOTSTRAP VARIABLES
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap/theme";
