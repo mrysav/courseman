@@ -10,44 +10,27 @@
     </div>
 </nav>
 
+
+<form role="form" action="<%= reviews_path %>" method="get" class="text-center form-inline" >
+    <input type="hidden" name="status" value="<%= params[:status] %>">
+    <div class="input-group">
+        <%= text_field_tag :s, params[:s], :class => 'form-control', :placeholder => "Search..." %>
+        <span class="input-group-btn">
+            <%= submit_tag "Search", :name => nil, :class => "btn btn-default" %>
+        </span>
+    </div>
+</form>
+<br><br>
+
 <% if @reviews.count > 0 %>
 
 <div class="col-md-8 col-md-offset-2">
 
-    <nav>
-        <ul class="pager">
-
-            <% if @p > 0 %>
-            <li class="previous"><a href="<%= reviews_path(:status => params[:status], :p => @p - 10) %>"><span aria-hidden="true">&larr;</span> Previous</a></li>
-            <% end %>
-
-            <% if @p + 10 < @p_max %>
-            <li class="next"><a href="<%= reviews_path(:status => params[:status], :p => @p + 10) %>">Next <span aria-hidden="true">&rarr;</span></a></li>
-            <% end %>
-
-        </ul>
-    </nav>
-
-    <hr>
-
-
     <%= render @reviews %>
 
-
-    <nav>
-        <ul class="pager">
-
-            <% if @p > 0 %>
-            <li class="previous"><a href="<%= reviews_path(:status => params[:status], :p => @p - 10) %>"><span aria-hidden="true">&larr;</span> Previous</a></li>
-            <% end %>
-
-            <% if @p + 10 < @p_max %>
-            <li class="next"><a href="<%= reviews_path(:status => params[:status], :p => @p + 10) %>">Next <span aria-hidden="true">&rarr;</span></a></li>
-            <% end %>
-
-        </ul>
-    </nav>
-
+    <div class="text-center">
+        <%= will_paginate @reviews, renderer: BootstrapPagination::Rails %>
+    </div>
 </div>
 
 <% else %>

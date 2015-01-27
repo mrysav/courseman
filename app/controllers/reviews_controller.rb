@@ -4,33 +4,24 @@ class ReviewsController < ApplicationController
     
     #TODO: Lots of the code in [#new, #edit] and [#create, #update] and [#index, #user] can be merged somehow
     
-    def index
+    def index 
         
         case params[:status]
         when 'approved'
-            @reviews = Review.where(:status => :approved)
+            status = :approved
         when 'pending'
-            @reviews = Review.where(:status => :pending)
+            status = :pending
         when 'sent'
-            @reviews = Review.where(:status => [:sent, :resent])
+            status = [:sent, :resent]
         else
-            @reviews = Review.where(:status => :pending)
+            status = :pending
+        end 
+
+        if(params[:s] == nil || params[:s] == "")
+            @reviews = Review.where(:status => status).paginate(:page => params[:page])
+        else
+            @reviews = Review.where(:status => status).full_search(params[:s]).paginate(:page => params[:page])
         end
-        
-        @p = params[:p].to_i || 0
-        
-        if @p < 0
-            redirect_to reviews_path(:status => params[:status], :p => 0)
-        end
-        
-        if @reviews.count > 10 && @p > @reviews.count - 10
-            redirect_to reviews_path(:status => params[:status], :p => @reviews.count - 10)
-        end
-        
-        @p_max = @reviews.count
-        
-        @reviews = @reviews[@p..@p+9]
-        
     end
 
     def new
@@ -112,23 +103,7 @@ class ReviewsController < ApplicationController
     end
     
     def user
-        
-        @reviews = current_user.reviews
-        
-        @p = params[:p].to_i || 0
-        
-        if @p < 0
-            redirect_to my_reviews_path(:p => 0)
-        end
-        
-        if @reviews.count > 10 && @p > @reviews.count - 10
-            redirect_to my_reviews_path(:p => @reviews.count - 10)
-        end
-        
-        @p_max = @reviews.count
-        
-        @reviews = @reviews[@p..@p+9]
-    
+        @reviews = current_user.reviews.paginate(:page => params[:page]) 
     end
     
     private

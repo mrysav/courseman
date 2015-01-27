@@ -19,9 +19,9 @@ To get started, go to the URL of the currently running server and get started.
     - [ ] Use Google Drive for syllabus storage
 - [x] User profile editing
 - [ ] Advanced course search
-    - [ ] Paginate course results using pg_search
+    - [x] Paginate course results using pg_search
 - [ ] Email functionality
-- [ ] Search for review inbox pages
+- [x] Search for review inbox pages
 - [ ] Make it harder to delete reviews
 - [ ] Export entire database admin tool
 - [ ] Print view for reviews
