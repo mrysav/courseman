@@ -16,10 +16,18 @@
 
 // DEFINE BOOTSTRAP VARIABLES HERE
 
-//$navbar-default-bg: #7a0019;
-//$umn-gold: #ffcc33;
-//$navbar-default-link-color: $umn-gold;
-//$navbar-default-link-hover-color: darken($umn-gold, 20%);
+$umn-gold: #ffcc33;
+$umn-maroon: #7a0019;
+
+$navbar-default-bg: $umn-maroon;
+$navbar-default-link-color: $umn-gold;
+$navbar-default-link-hover-color: darken($umn-gold, 20%);
+$navbar-default-link-active-color: darken($umn-gold, 20%);
+
+$dropdown-bg: $umn-maroon;
+$dropdown-link-color: $umn-gold;
+$dropdown-link-hover-color: $umn-gold;
+$dropdown-link-hover-bg: lighten($umn-maroon, 5%);
 
 // END BOOTSTRAP VARIABLES
 
