@@ -21,37 +21,13 @@
     
     <h2>Results</h2>
     
-    <nav>
-        <ul class="pager">
-
-            <% if @p > 0 %>
-            <li class="previous"><a href="<%= search_path(:course => params[:course], :p => @p - 10) %>"><span aria-hidden="true">&larr;</span> Previous</a></li>
-            <% end %>
-
-            <% if @p + 10 < @p_max %>
-            <li class="next"><a href="<%= search_path(:course => params[:course], :p => @p + 10) %>">Next <span aria-hidden="true">&rarr;</span></a></li>
-            <% end %>
-
-        </ul>
-    </nav>
-    
     <hr>
 
     <%= render @courses %>
-    
-    <nav>
-        <ul class="pager">
 
-            <% if @p > 0 %>
-            <li class="previous"><a href="<%= search_path(:course => params[:course], :p => @p - 10) %>"><span aria-hidden="true">&larr;</span> Previous</a></li>
-            <% end %>
-
-            <% if @p + 10 < @p_max %>
-            <li class="next"><a href="<%= search_path(:course => params[:course], :p => @p + 10) %>">Next <span aria-hidden="true">&rarr;</span></a></li>
-            <% end %>
-
-        </ul>
-    </nav>
+    <div class="text-center">
+        <%= will_paginate @courses, renderer: BootstrapPagination::Rails %>
+    </div>
     
     <% else %>
     

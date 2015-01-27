@@ -8,6 +8,7 @@ gem 'rails', '~> 4.2.0'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0'
+
 # Use bootstrap
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
@@ -36,20 +37,16 @@ gem 'unicorn'
 
 gem 'rack-timeout'
 
-# Use thin as the app server
-# gem 'thin'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Use omniauth for authentication
 gem 'omniauth-google-oauth2'
 
-# Use paperclip for file attachments
 gem 'paperclip', '~>4.2'
 
-# Use pg_search
 gem 'pg_search'
+
+gem 'will_paginate-bootstrap'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

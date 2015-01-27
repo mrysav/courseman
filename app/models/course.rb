@@ -11,10 +11,10 @@ class Course < ActiveRecord::Base
     
     pg_search_scope :full_search, :against => [:name, :code], 
     :associated_against => { :university => [:name, :city, :country], 
-                             :umd_course => [:name, :lib_eds, :designator, :code] },
+                             :umd_course => [:name, :lib_eds, :designator, :code],
+                             :review => { status: "approved" } },
     :using => [:tsearch, :trigram]
-                        
-    def approved?
-        self.review != nil && self.review.status == 'approved'
-    end
+
+    scope :approved, ->() { joins(:review).where("reviews_courses.status = 'approved'") }
+
 end
