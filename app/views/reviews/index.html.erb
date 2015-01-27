@@ -14,7 +14,7 @@
 <form role="form" action="<%= reviews_path %>" method="get" class="text-center form-inline" >
     <input type="hidden" name="status" value="<%= params[:status] %>">
     <div class="input-group">
-        <%= text_field_tag :s, params[:s], :class => 'form-control', :placeholder => "Search..." %>
+        <%= text_field_tag :s, params[:s], :class => 'form-control' %>
         <span class="input-group-btn">
             <%= submit_tag "Search", :name => nil, :class => "btn btn-default" %>
         </span>
