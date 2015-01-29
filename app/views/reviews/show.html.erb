@@ -1,0 +1,59 @@
+<div class="container">
+
+    <div class="row" style="border: 1px solid #000000">
+        <div class="col-md-4 text-center" style="font-family: serif">
+            <br>UMD International Education Office
+        </div>
+        <div class="col-md-8 text-center" style="font-family: serif; background-color: #000000; color: #FFFFFF">
+            <h1>Foreign Course Review Form</h1>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="text-center row">
+        <b>Department for Review:</b> <%= @review.dept %><br>
+        <b>Date:</b>  <%= @review.created_at.strftime('%b %e, %Y') %> 
+    </div>
+
+    <br>
+    
+    <fieldset class="row">
+        <legend>Study Abroad Program Information</legend>
+            <b>Program Sponsor:</b> <%= @review.program_sponsor %><br> 
+            <b>Program Name:</b> <%= @review.program_name %><br> 
+            <b>Program Term:</b> <%= @review.program_term %><br> 
+    </fieldset>
+
+    <br>
+
+    <fieldset class="row">
+        <legend>University Information</legend>
+            <b>University name:</b> <%= @review.university.name %><br>
+            <b>University location:</b> <%= @review.university.city || '(no city)' %>, <%= @review.university.country || 'no country' %>
+    </fieldset>
+
+    <br>
+    
+    <fieldset class="row">
+        <legend>Foreign Course Information</legend>
+            <b>Foreign Course Name:</b> <%= @review.course.code + ': ' if @review.course.code %><%= @review.course.name %><br>
+            <b>Language of instruction: <%= @review.course.language || '' %></b> 
+    </fieldset>
+
+    <br>
+
+<!--
+    <div class="row" style="background-color: #f0f0f0; padding: 15px;">
+        <b>TO BE COMPLETED BY THE DEPARTMENT</b><br>
+        Select and complete one of the three options below.<br>
+
+        <ul>
+        <li>
+            <span class="glyphicon glyphicon-unchecked"> I have reviewed the course materials and conclude that the course is equivalent to the following UMD course:<br>
+            Course designator: _________________  Course title: __________________________________________
+        </li>
+        </ul>
+    </div>
+-->
+</div>

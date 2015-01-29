@@ -6,7 +6,6 @@
         </button>
         <% if current_user && current_user.admin %>
         <%= link_to 'View', edit_review_path(review), :class => 'btn btn-small btn-default' %>
-        <%= link_to 'Delete', review_path(review), method: :delete, data: { confirm: 'Are you sure? This will delete the corresponding foreign course and UMD course from the database!' }, :class => 'btn btn-small btn-danger' %>
         <% end %>
     </div>
     

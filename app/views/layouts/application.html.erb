@@ -9,7 +9,7 @@
 </head>
 <body>
         
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default <%= 'collapse' if @print_view %>" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
@@ -76,7 +76,7 @@
         
         </div>
 
-<% if current_user && current_user.admin %>
+<% if current_user && current_user.admin && !@print_view%>
         <div class="row text-center small">
             <br><br>
             questions? bugs? feature requests? email <a href="mailto:rysau001@d.umn.edu">mitchell</a>.

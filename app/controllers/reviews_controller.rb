@@ -59,7 +59,15 @@ class ReviewsController < ApplicationController
             render 'new'
         end
     end
-    
+
+    def show
+        @review = Review.find_by_id(params[:id])
+
+        if params[:print] = "true"
+            @print_view = true
+        end
+    end    
+
     def edit
         @review = Review.find_by_id(params[:id])
         @universities = University.all.collect {|u| [(u.name || '(no name)') + '  (' + (u.city || '(no city)') + ', ' + (u.country || '(no country)') + ')', u.id] }
@@ -99,7 +107,7 @@ class ReviewsController < ApplicationController
         @review.umd_course.destroy
         @review.destroy
         
-        redirect_to reviews_path(:p => params[:p], :status => params[:status])
+        redirect_to reviews_path()
     end
     
     def user

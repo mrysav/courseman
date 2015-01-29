@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   put 'profile' => 'users#update'
   
   get '/search' => 'search#index'
-  resources :reviews, except: :show
+  resources :reviews
   get '/my-reviews/' => 'reviews#user'
   
   get '/xyzzy' => 'search#test'
