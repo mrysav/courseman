@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get '/search' => 'search#index'
   resources :reviews
   get '/my-reviews/' => 'reviews#user'
+
+  get '/admin'  => 'admin#index', :as => :admin
   
   get '/xyzzy' => 'search#test'
 
