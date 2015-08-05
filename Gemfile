@@ -42,6 +42,7 @@ gem 'rack-timeout'
 gem 'omniauth-google-oauth2'
 
 gem 'paperclip', '~>4.2'
+gem 'paperclip-dropbox'
 
 gem 'pg_search'
 
