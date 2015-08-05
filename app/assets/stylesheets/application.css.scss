@@ -14,25 +14,6 @@
  *= require_self
  */
 
-// DEFINE BOOTSTRAP VARIABLES HERE
-
-$umn-gold: #ffcc33;
-$umn-maroon: #7a0019;
-
-$brand-primary: $umn-maroon;
-
-$navbar-default-bg: $umn-maroon;
-$navbar-default-link-color: $umn-gold;
-$navbar-default-link-hover-color: darken($umn-gold, 20%);
-$navbar-default-link-active-color: darken($umn-gold, 20%);
-
-$dropdown-bg: $umn-maroon;
-$dropdown-link-color: $umn-gold;
-$dropdown-link-hover-color: $umn-gold;
-$dropdown-link-hover-bg: lighten($umn-maroon, 5%);
-
-// END BOOTSTRAP VARIABLES
-
 @import "bootstrap-sprockets";
 @import "bootstrap";
 //@import "bootstrap/theme";
