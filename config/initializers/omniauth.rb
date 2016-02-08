@@ -3,7 +3,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   {
       :image_aspect_ratio => "square",
       :image_size => 512,
-      :hd => "d.umn.edu",
+      :hd => ENV['GOOGLE_DOMAIN'],
       :prompt => "select_account"
   }
 end
