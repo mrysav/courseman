@@ -6,4 +6,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       :hd => ENV['GOOGLE_DOMAIN'],
       :prompt => "select_account"
   }
+  provider :identity, :fields => [:name, :email, :image], on_failed_registration: lambda { |env|    
+    SessionsController.action(:register).call(env)
+  }
 end
