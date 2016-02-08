@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   
   get '/login' => 'sessions#new', :as => :login 
   get '/logout' => 'sessions#destroy', :as => :logout
-  get "/auth/:provider/callback" => "sessions#create"
+  get '/register' => 'sessions#register', :as => :register
+  match '/auth/:provider/callback' => 'sessions#create', via: [:get, :post]
   
   get 'profile' => 'users#edit', :as => :user
   put 'profile' => 'users#update'

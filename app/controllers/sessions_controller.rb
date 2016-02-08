@@ -13,5 +13,12 @@ class SessionsController < ApplicationController
       flash[:success] = "Signed out!"
       redirect_to root_url
     end
+
+    def new
+    end
+    
+    def register
+        @identity = env['omniauth.identity']
+    end
     
 end
