@@ -10,6 +10,15 @@
             <%= submit_tag "Search!", :name => nil, :class => "btn btn-default" %>
         </div>
     </form>
+    
+    <% if ENV['DEMO_MODE'] == 'true' %>
+    <div class="text-center">
+        <h4>DEMO MODE</h4>
+        <h5>Use these credentials to log in as an admin:</h5>
+        <b>Email: </b><%= ENV['DEMO_USER'] %><br/>
+        <b>Password: </b><%= ENV['DEMO_PASS'] %>
+    </div>
+    <% end %>
 
 </div>
 
