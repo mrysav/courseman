@@ -16,3 +16,13 @@
 @import "bootstrap";
 @import "font-awesome";
 @import "bootstrap-social";
+
+.avatar-rounded {
+    width: 512px;
+    border-radius: 256px;
+}
+
+.avatar-rounded-small {
+    width: 200px;
+    border-radius: 100px;
+}
