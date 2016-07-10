@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
-    before_filter :require_valid_user
-    before_filter :require_admin_user, :except => [:new, :create, :user]
+    before_action :require_valid_user
+    before_action :require_admin_user, :except => [:new, :create, :user]
     
     #TODO: Lots of the code in [#new, #edit] and [#create, #update] and [#index, #user] can be merged somehow
     

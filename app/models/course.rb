@@ -1,4 +1,4 @@
-class Course < ActiveRecord::Base
+class Course < ApplicationRecord
     include PgSearch
     
     has_attached_file :syllabus

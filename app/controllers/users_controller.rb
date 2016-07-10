@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_filter :require_valid_user
+    before_action :require_valid_user
     
     def edit
         @user = User.find(current_user.id)
