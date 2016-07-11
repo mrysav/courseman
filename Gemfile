@@ -62,7 +62,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-identity'
 
 # for file uploads
-gem 'paperclip'
+gem 'paperclip', '~>4.3'
 gem 'aws-sdk', '< 2.0'
 
 # for easy full text search
