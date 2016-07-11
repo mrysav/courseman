@@ -18,7 +18,7 @@ if [ -z ${GOOGLE_DOMAIN+x} ]; then
     read -p "Google Application Secret: " GOOGLE_SECRET
 fi
 
-echo "Amazon S3 is used for photo storage, but only in the production Rails environment."
+echo "Amazon S3 is used for file storage, but only in the production Rails environment."
 echo "If you aren't going to be using production, or you're using Docker, leave the following blank."
 
 if [ -z ${AWS_ACCESS_KEY_ID+x} ]; then
