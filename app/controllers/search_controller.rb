@@ -1,11 +1,10 @@
 class SearchController < ApplicationController
-    
-    def test
-        
-    end
+    require 'will_paginate/array'
     
     def index
-        @courses = Course.approved.full_search(params[:course]).paginate(:page => params[:page], :per_page => 10)
+        @reviews = PgSearch.multisearch(params[:course])
+        @reviews = @reviews.select { |r| r.searchable.is_a? Review && r.searchable.status == :approved }
+        @courses = @reviews.paginate(:page => params[:page], :per_page => 10)
     end
 
 end

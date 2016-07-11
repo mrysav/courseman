@@ -11,7 +11,6 @@ class CreateReviews < ActiveRecord::Migration
       t.string :program_term
       
       t.belongs_to :user
-      t.belongs_to :course
 
       t.timestamps null: false
     end

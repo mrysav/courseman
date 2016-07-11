@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20160711063841) do
     t.string   "program_term"
     t.integer  "user_id"
     t.integer  "course_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.string   "status"
     t.string   "course_code"
     t.string   "course_name"
@@ -69,12 +69,12 @@ ActiveRecord::Schema.define(version: 20160711063841) do
     t.string   "course_notes"
     t.string   "course_approved_by"
     t.datetime "course_approved"
-    t.string   "course_categories"
+    t.string   "course_categories",                  array: true
     t.string   "foreign_name"
     t.string   "foreign_code"
     t.string   "foreign_language"
     t.string   "foreign_credits"
-    t.integer  "foreign_university"
+    t.integer  "foreign_university_id"
     t.string   "syllabus"
   end
 

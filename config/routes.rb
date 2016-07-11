@@ -17,7 +17,5 @@ Rails.application.routes.draw do
   get '/my-reviews/' => 'reviews#user'
 
   get '/admin'  => 'admin#index', :as => :admin
-  
-  # get '/xyzzy' => 'search#test'
 
 end

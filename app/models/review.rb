@@ -2,19 +2,12 @@ class Review < ApplicationRecord
     include PgSearch
 
     belongs_to :user
-    belongs_to :course
     
-    has_one :university, through: :course
-    has_one :umd_course
-    
-    accepts_nested_attributes_for :course
-    accepts_nested_attributes_for :umd_course
-
-    pg_search_scope :full_search, :associated_against => { :course => [:name, :code],
-                                                           :umd_course => [:name, :lib_eds, :designator, :code],
-                                                           :university => [:name, :city, :country] },
-                                  :using => [:tsearch, :trigram]
-
+    multisearchable :against => [:foreign_name, :foreign_code, :course_name, :course_code, :course_categories]
 
     self.per_page = 10
+    
+    def university
+        University.find(self.foreign_university_id)
+    end
 end
