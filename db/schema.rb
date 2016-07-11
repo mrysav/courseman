@@ -17,20 +17,6 @@ ActiveRecord::Schema.define(version: 20160711063841) do
   enable_extension "fuzzystrmatch"
   enable_extension "pg_trgm"
 
-  create_table "courses", force: :cascade do |t|
-    t.string   "code"
-    t.string   "name"
-    t.string   "language"
-    t.string   "credits"
-    t.integer  "university_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.string   "syllabus_file_name"
-    t.string   "syllabus_content_type"
-    t.integer  "syllabus_file_size"
-    t.datetime "syllabus_updated_at"
-  end
-
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
     t.integer  "attempts",   default: 0, null: false
@@ -57,8 +43,8 @@ ActiveRecord::Schema.define(version: 20160711063841) do
 
   create_table "pg_search_documents", force: :cascade do |t|
     t.text     "content"
-    t.integer  "searchable_id"
     t.string   "searchable_type"
+    t.integer  "searchable_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -92,20 +78,6 @@ ActiveRecord::Schema.define(version: 20160711063841) do
     t.string   "syllabus"
   end
 
-  create_table "umd_courses", force: :cascade do |t|
-    t.string   "code"
-    t.string   "name"
-    t.string   "designator"
-    t.datetime "approved"
-    t.string   "approved_by"
-    t.string   "notes"
-    t.string   "lib_eds",                  array: true
-    t.string   "credits"
-    t.integer  "review_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "universities", force: :cascade do |t|
     t.string   "name"
     t.string   "city"
@@ -120,7 +92,7 @@ ActiveRecord::Schema.define(version: 20160711063841) do
     t.string   "name"
     t.string   "email"
     t.string   "image"
-    t.string   "umnid"
+    t.string   "student_id"
     t.string   "major"
     t.string   "minor"
     t.string   "collegiate_unit"

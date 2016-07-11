@@ -10,7 +10,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :image
       
     # optional information properties
-      t.string :umnid
+      t.string :student_id
       t.string :major
       t.string :minor
       t.string :collegiate_unit
