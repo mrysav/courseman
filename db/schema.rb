@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208160251) do
+ActiveRecord::Schema.define(version: 20160711063841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,9 +74,22 @@ ActiveRecord::Schema.define(version: 20160208160251) do
     t.string   "program_term"
     t.integer  "user_id"
     t.integer  "course_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "status"
+    t.string   "course_code"
+    t.string   "course_name"
+    t.string   "course_credits"
+    t.string   "course_notes"
+    t.string   "course_approved_by"
+    t.datetime "course_approved"
+    t.string   "course_categories"
+    t.string   "foreign_name"
+    t.string   "foreign_code"
+    t.string   "foreign_language"
+    t.string   "foreign_credits"
+    t.integer  "foreign_university"
+    t.string   "syllabus"
   end
 
   create_table "umd_courses", force: :cascade do |t|

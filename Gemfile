@@ -57,20 +57,19 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'font-awesome-rails'
 
+# for pagination
+gem 'will_paginate-bootstrap'
+
 # authentication schemes
 gem 'omniauth-google-oauth2'
 gem 'omniauth-identity'
 
 # for file uploads
-gem 'paperclip', '~>4.3'
-gem 'aws-sdk', '< 2.0'
+gem 'carrierwave'
+# gem 'fog-aws'
 
 # for easy full text search
 gem 'pg_search'
 
 # for job processing
-gem 'delayed_job'
 gem 'delayed_job_active_record'
-
-# for pagination
-gem 'will_paginate-bootstrap'
