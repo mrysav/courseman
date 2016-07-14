@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   # put '/import' => 'import#upload'
   
   get '/search' => 'search#index'
-  resources :reviews
-  get '/my-reviews/' => 'reviews#user'
+  resources :equivalencies
+  get '/my-reviews/' => 'equivalencies#user'
 
   get '/admin'  => 'admin#index', :as => :admin
 

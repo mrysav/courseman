@@ -2,16 +2,16 @@
     <div class="container">
         <div>
             <ul class="nav navbar-nav" role="tablist">
-                <li class="<%= 'active' if params[:status] == 'pending' %>"><%= link_to 'Pending', reviews_path(:status => :pending) %></li>
-                <li class="<%= 'active' if params[:status] == 'sent' %>"><%= link_to 'Sent', reviews_path(:status => :sent) %></li>
-                <li class="<%= 'active' if params[:status] == 'approved' %>"><%= link_to 'Approved', reviews_path(:status => :approved) %></li>
+                <li class="<%= 'active' if params[:status] == 'pending' %>"><%= link_to 'Pending', equivalencies_path(:status => :pending) %></li>
+                <li class="<%= 'active' if params[:status] == 'sent' %>"><%= link_to 'Sent', equivalencies_path(:status => :sent) %></li>
+                <li class="<%= 'active' if params[:status] == 'approved' %>"><%= link_to 'Approved', equivalencies_path(:status => :approved) %></li>
             </ul>
         </div>
     </div>
 </nav>
 
 
-<form role="form" action="<%= reviews_path %>" method="get" class="text-center form-inline" >
+<form role="form" action="<%= equivalencies_path %>" method="get" class="text-center form-inline" >
     <input type="hidden" name="status" value="<%= params[:status] %>">
     <div class="input-group">
         <%= text_field_tag :s, params[:s], :class => 'form-control' %>
@@ -22,14 +22,14 @@
 </form>
 <br><br>
 
-<% if @reviews.count > 0 %>
+<% if @equivalencies.count > 0 %>
 
 <div class="col-md-8 col-md-offset-2">
 
-    <%= render @reviews %>
+    <%= render @equivalencies %>
 
     <div class="text-center">
-        <%= will_paginate @reviews, renderer: BootstrapPagination::Rails %>
+        <%= will_paginate @equivalencies, renderer: BootstrapPagination::Rails %>
     </div>
 </div>
 

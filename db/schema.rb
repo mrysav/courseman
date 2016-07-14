@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160711063841) do
+ActiveRecord::Schema.define(version: 20160714010439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,24 +32,7 @@ ActiveRecord::Schema.define(version: 20160711063841) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
 
-  create_table "identities", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "image"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  create_table "pg_search_documents", force: :cascade do |t|
-    t.text     "content"
-    t.string   "searchable_type"
-    t.integer  "searchable_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  create_table "reviews", force: :cascade do |t|
+  create_table "equivalencies", force: :cascade do |t|
     t.string   "dept"
     t.datetime "date_sent"
     t.datetime "date_due"
@@ -76,6 +59,23 @@ ActiveRecord::Schema.define(version: 20160711063841) do
     t.string   "foreign_credits"
     t.integer  "foreign_university_id"
     t.string   "syllabus"
+  end
+
+  create_table "identities", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "image"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text     "content"
+    t.string   "searchable_type"
+    t.integer  "searchable_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "universities", force: :cascade do |t|

@@ -1,7 +1,7 @@
-<div id="review<%= review.id %>" >
+<div id="review<%= Equivalency.id %>" >
     
     <div class="btn-group pull-right" id="controls">
-        <button type="button" class="btn btn-small btn-default" data-toggle="collapse" data-target="#notes<%= review.id %>">
+        <button type="button" class="btn btn-small btn-default" data-toggle="collapse" data-target="#notes<%= Equivalency.id %>">
             Show Notes
         </button>
         <% if current_user && current_user.admin %>
@@ -9,36 +9,36 @@
         <% end %>
     </div>
     
-    <b><%= (review.course.code || '') + ' ' + review.course.name %></b><br>
-    <%= (review.university.name || 'no university') + ' (' + (review.university.city || '') + ', ' + (review.university.country || '') + ')' %>
+    <b><%= (Equivalency.course.code || '') + ' ' + Equivalency.course.name %></b><br>
+    <%= (Equivalency.university.name || 'no university') + ' (' + (Equivalency.university.city || '') + ', ' + (Equivalency.university.country || '') + ')' %>
     <br>
-    Date submitted: <%= review.created_at.strftime('%b %e, %Y') %><br>
-    Status: <b><%= review.status.titleize %></b><br>
+    Date submitted: <%= Equivalency.created_at.strftime('%b %e, %Y') %><br>
+    Status: <b><%= Equivalency.status.titleize %></b><br>
         
-    <div id="notes<%= review.id %>" class="collapse">
+    <div id="notes<%= Equivalency.id %>" class="collapse">
         
-        <% if review.status == 'approved' %>
+        <% if Equivalency.status == 'approved' %>
             
-        Equivalent: <b><%= review.umd_course.designator + ' ' + review.umd_course.code + ': ' + review.umd_course.name %></b><br>
-        <% if review.umd_course.lib_eds.reject(&:empty?).count > 0 %>
-        Liberal education categories: <%= review.umd_course.lib_eds.reject(&:empty?).join(', ') %><br>
+        Equivalent: <b><%= Equivalency.umd_course.designator + ' ' + Equivalency.umd_course.code + ': ' + Equivalency.umd_course.name %></b><br>
+        <% if Equivalency.umd_course.lib_eds.reject(&:empty?).count > 0 %>
+        Liberal education categories: <%= Equivalency.umd_course.lib_eds.reject(&:empty?).join(', ') %><br>
         <% end %>
-        <% if review.umd_course.approved_by %>
-        Approved by: <%= review.umd_course.approved_by %><br>
+        <% if Equivalency.umd_course.approved_by %>
+        Approved by: <%= Equivalency.umd_course.approved_by %><br>
         <% end %>
-        Approved on: <%= review.umd_course.approved.strftime('%b %e, %Y') || '' %><br>
-        <!-- <div class="notes_box"><%= review.umd_course.notes %></div> -->
+        Approved on: <%= Equivalency.umd_course.approved.strftime('%b %e, %Y') || '' %><br>
+        <!-- <div class="notes_box"><%= Equivalency.umd_course.notes %></div> -->
         
         <% end %>
         
-        <% if review.status == 'sent' || review.status == 'resent' %>
+        <% if Equivalency.status == 'sent' || Equivalency.status == 'resent' %>
             
-        Last updated: <%= review.updated_at.strftime('%b %e, %Y') %>
+        Last updated: <%= Equivalency.updated_at.strftime('%b %e, %Y') %>
         
         <% end %>
         
-        <% if review.note != '' && review.note != nil %>
-        <div class="alert alert-info"><%= review.note %></div>
+        <% if Equivalency.note != '' && Equivalency.note != nil %>
+        <div class="alert alert-info"><%= Equivalency.note %></div>
         <% end %>
     
     </div>

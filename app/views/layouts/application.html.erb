@@ -24,14 +24,14 @@
                     <li class="<%= 'active' if current_page?(search_path) || current_page?(root_path) %>"><%= link_to 'Search Courses', search_path %></li>
 
                     <% if current_user && current_user.admin %>
-                    <li class="<%= 'active' if current_page?(reviews_path) %>"><%= link_to 'Reviews', reviews_path(:status => :pending) %></li>
+                    <li class="<%= 'active' if current_page?(equivalencies_path) %>"><%= link_to 'Reviews', equivalencies_path(:status => :pending) %></li>
                     <% end %>
 
                     <% if current_user && !current_user.admin %>
-                    <li class="<%= 'active' if current_page?(my_reviews_path) %>"><%= link_to 'My Reviews', my_reviews_path %></li>
+                    <li class="<%= 'active' if current_page?(my_equivalencies_path) %>"><%= link_to 'My Reviews', my_equivalencies_path %></li>
                     <% end %>
 
-                    <li class="<%= 'active' if current_page?(new_review_path) %>"><%= link_to 'Submit a review', new_review_path %></li>
+                    <li class="<%= 'active' if current_page?(new_equivalency_path) %>"><%= link_to 'Submit a review', new_equivalency_path %></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <% if current_user %>

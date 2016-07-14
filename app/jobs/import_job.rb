@@ -2,7 +2,7 @@
 #
 # require 'csv'
 #
-# # account to import reviews under
+# # account to import equivalencies under
 # user = User.find_by_email('rysau001@d.umn.edu')
 #
 # # Import data from current course database
@@ -54,9 +54,9 @@
 #
 #         course = university.courses.create(code: course_code, name: course_name, language: language, syllabus: syl_file)
 #
-#         review = Review.create(dept: dept, program_sponsor: provider, date_received: approved_date, course_id: course.id, status: :approved)
+#         review = Equivalency.create(dept: dept, program_sponsor: provider, date_received: approved_date, course_id: course.id, status: :approved)
 #
-#         umd_course = UmdCourse.create(review_id: review.id, code: umd_course_code, name: umd_course_name, designator: dept, notes: note, lib_eds: lib_eds, approved: approved_date, approved_by: approved_name)
+#         umd_course = UmdCourse.create(review_id: Equivalency.id, code: umd_course_code, name: umd_course_name, designator: dept, notes: note, lib_eds: lib_eds, approved: approved_date, approved_by: approved_name)
 #
 #
 #     rescue Exception => e

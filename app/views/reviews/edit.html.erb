@@ -7,11 +7,11 @@
         <% end %>
     </div>
 
-    <% if @review.user %>
+    <% if @Equivalency.user %>
     
     <fieldset class="row">
         <legend>Student Information</legend>
-        <%= render @review.user %>
+        <%= render @Equivalency.user %>
     </fieldset>
     
     <br>
@@ -47,7 +47,7 @@
             <legend>University Information</legend>
             <div id="get_university" class="form-group">
                 <%= label_tag :university_id %>
-                <%= select_tag(:university_id, options_for_select(@universities, selected: @review.university.id), { :class => "form-control" }) %>
+                <%= select_tag(:university_id, options_for_select(@universities, selected: @Equivalency.university.id), { :class => "form-control" }) %>
                 <div style="margin-top: 15px" class="text-center"><a class="btn btn-default" id="add_university_link">Add university</a></div>
             </div>
 
@@ -67,7 +67,7 @@
         <fieldset class="col-md-6">
             <legend class="legend">Foreign Course Information</legend>
     
-            <%= review_form.fields_for :course, @review.course do |course_form| %>
+            <%= review_form.fields_for :course, @Equivalency.course do |course_form| %>
     
             <%= course_form.label 'Course name' %><%= course_form.text_field :name, :class => "form-control" %>
             <%= course_form.label 'Course code' %><%= course_form.text_field :code, :class => "form-control" %>
@@ -110,7 +110,7 @@
         <fieldset class="col-md-8 col-md-offset-2">
             <legend class="legend">UMD Course Equivalent</legend>
             <div class="col-md-6">
-                <%= review_form.fields_for :umd_course, @review.umd_course do |umd_form| %>
+                <%= review_form.fields_for :umd_course, @Equivalency.umd_course do |umd_form| %>
                 <%= umd_form.label 'Designator' %><%= umd_form.text_field :designator, :class => "form-control" %>
                 <%= umd_form.label 'Course code' %><%= umd_form.text_field :code, :class => "form-control" %>
                 <%= umd_form.label 'Course name' %><%= umd_form.text_field :name, :class => "form-control" %>

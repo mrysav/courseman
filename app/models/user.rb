@@ -1,8 +1,8 @@
 class User < ApplicationRecord
-    has_many :reviews
+    has_many :equivalencies
     
     def incomplete?
-        self.umnid.blank? || 
+        self.student_id.blank? || 
         self.collegiate_unit.blank? || 
         self.major.blank? || 
         self.minor.blank?

@@ -1,4 +1,4 @@
-class ReviewsController < ApplicationController
+class EquivalenciesController < ApplicationController
     before_action :require_valid_user
     before_action :require_admin_user, :except => [:new, :create, :user]
     
@@ -17,21 +17,20 @@ class ReviewsController < ApplicationController
             status = :pending
         end 
 
-        if(params[:s] == nil || params[:s] == "")
-            @reviews = Review.where(:status => status).paginate(:page => params[:page])
+        if(params[:s].nil? || params[:s].blank?)
+            @equivalencies = Equivalency.where(:status => status).paginate(:page => params[:page])
         else
-            @reviews = Review.where(:status => status).full_search(params[:s]).paginate(:page => params[:page])
+            @equivalencies = Equivalency.where(:status => status).search(params[:s]).paginate(:page => params[:page])
         end
     end
 
     def new
-        @review = current_user.reviews.new
-        @universities = University.all.collect {|u| [(u.name || '(no name)') + '  (' + (u.city || '(no city)') + ', ' + (u.country || '(no country)') + ')', u.id] }
-        @universities.sort! { |x,y| x[0] <=> y[0] }
+        @review = current_user.equivalencies.new
+        @universities = University.get_alphabetized_list
     end
     
     def create
-        @review = current_user.reviews.create(review_params)
+        @review = current_user.equivalencies.create(review_params)
         
         @university = University.find_by_id(params[:university_id])
         
@@ -42,18 +41,18 @@ class ReviewsController < ApplicationController
             end
         end
         
-        @review.course.university = @university
+        @Equivalency.course.university = @university
         
         # TODO: Tell Postgres that this is the default value somehow
-        @review.status = :pending
+        @Equivalency.status = :pending
         
-        @review.umd_course = UmdCourse.create(:review_id => @review.id)
+        @Equivalency.umd_course = UmdCourse.create(:review_id => @Equivalency.id)
         
-        if @review.save
+        if @Equivalency.save
             if(current_user.admin)
-                redirect_to reviews_path
+                redirect_to equivalencies_path
             else
-                redirect_to my_reviews_path
+                redirect_to my_equivalencies_path
             end
         else
             render 'new'
@@ -61,7 +60,7 @@ class ReviewsController < ApplicationController
     end
 
     def show
-        @review = Review.find_by_id(params[:id])
+        @review = Equivalency.find_by_id(params[:id])
 
         if params[:print] = "true"
             @print_view = true
@@ -69,15 +68,14 @@ class ReviewsController < ApplicationController
     end    
 
     def edit
-        @review = Review.find_by_id(params[:id])
-        @universities = University.all.collect {|u| [(u.name || '(no name)') + '  (' + (u.city || '(no city)') + ', ' + (u.country || '(no country)') + ')', u.id] }
-        @universities.sort! { |x,y| x[0] <=> y[0] }
+        @review = Equivalency.find_by_id(params[:id])
+        @universities = University.get_alphabetized_list
         @lib_ed_cats = lib_ed_cats
     end
     
     def update
-        @review = Review.find(params[:id])
-        if !@review.update(review_params)
+        @review = Equivalency.find(params[:id])
+        if !@Equivalency.update(review_params)
             render 'new'
         end
         
@@ -90,28 +88,28 @@ class ReviewsController < ApplicationController
             end
         end
         
-        @review.course.university = @university
+        @Equivalency.course.university = @university
         
         #TODO: Add proper date logic
         
-        if @review.save
-            redirect_to reviews_path
+        if @Equivalency.save
+            redirect_to equivalencies_path
         else
             render 'new'
         end
     end
     
     def destroy
-        @review = Review.find(params[:id])
-        @review.course.destroy
-        @review.umd_course.destroy
-        @review.destroy
+        @review = Equivalency.find(params[:id])
+        @Equivalency.course.destroy
+        @Equivalency.umd_course.destroy
+        @Equivalency.destroy
         
-        redirect_to reviews_path()
+        redirect_to equivalencies_path()
     end
     
     def user
-        @reviews = current_user.reviews.paginate(:page => params[:page]) 
+        @equivalencies = current_user.equivalencies.paginate(:page => params[:page]) 
     end
     
     private

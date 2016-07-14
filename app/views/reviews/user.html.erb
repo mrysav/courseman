@@ -2,17 +2,17 @@
 
 <% if current_user && current_user.admin %>
 <div class="alert alert-info">
-    Why are you here?!? Head on over to <%= link_to 'reviews', reviews_path %> to see where it's really at.
+    Why are you here?!? Head on over to <%= link_to 'equivalencies', equivalencies_path %> to see where it's really at.
 </div>
 <% end %>
 
-<% if @reviews.count > 0 %>
+<% if @equivalencies.count > 0 %>
 <div class="col-md-8 col-md-offset-2">
 
-    <%= render @reviews %>
+    <%= render @equivalencies %>
     
     <div class="text-center">
-        <%= will_paginate @reviews, renderer: BootstrapPagination::Rails %>
+        <%= will_paginate @equivalencies, renderer: BootstrapPagination::Rails %>
     </div>
 </div>
 

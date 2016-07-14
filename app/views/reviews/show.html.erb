@@ -12,33 +12,33 @@
     <br>
 
     <div class="text-center row">
-        <b>Department for Review:</b> <%= @review.dept %><br>
-        <b>Date:</b>  <%= @review.created_at.strftime('%b %e, %Y') %> 
+        <b>Department for Review:</b> <%= @Equivalency.dept %><br>
+        <b>Date:</b>  <%= @Equivalency.created_at.strftime('%b %e, %Y') %> 
     </div>
 
     <br>
     
     <fieldset class="row">
         <legend>Study Abroad Program Information</legend>
-            <b>Program Sponsor:</b> <%= @review.program_sponsor %><br> 
-            <b>Program Name:</b> <%= @review.program_name %><br> 
-            <b>Program Term:</b> <%= @review.program_term %><br> 
+            <b>Program Sponsor:</b> <%= @Equivalency.program_sponsor %><br> 
+            <b>Program Name:</b> <%= @Equivalency.program_name %><br> 
+            <b>Program Term:</b> <%= @Equivalency.program_term %><br> 
     </fieldset>
 
     <br>
 
     <fieldset class="row">
         <legend>University Information</legend>
-            <b>University name:</b> <%= @review.university.name %><br>
-            <b>University location:</b> <%= @review.university.city || '(no city)' %>, <%= @review.university.country || 'no country' %>
+            <b>University name:</b> <%= @Equivalency.university.name %><br>
+            <b>University location:</b> <%= @Equivalency.university.city || '(no city)' %>, <%= @Equivalency.university.country || 'no country' %>
     </fieldset>
 
     <br>
     
     <fieldset class="row">
         <legend>Foreign Course Information</legend>
-            <b>Foreign Course Name:</b> <%= @review.course.code + ': ' if @review.course.code %><%= @review.course.name %><br>
-            <b>Language of instruction: <%= @review.course.language || '' %></b> 
+            <b>Foreign Course Name:</b> <%= @Equivalency.course.code + ': ' if @Equivalency.course.code %><%= @Equivalency.course.name %><br>
+            <b>Language of instruction: <%= @Equivalency.course.language || '' %></b> 
     </fieldset>
 
     <br>
