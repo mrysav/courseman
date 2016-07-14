@@ -25,7 +25,7 @@ class EquivalenciesController < ApplicationController
     end
 
     def new
-        @review = current_user.equivalencies.new
+        @equiv = current_user.equivalencies.new
         @universities = University.get_alphabetized_list
     end
     

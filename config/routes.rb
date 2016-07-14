@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   
   get '/search' => 'search#index'
   resources :equivalencies
-  get '/my-reviews/' => 'equivalencies#user'
+  get '/my-equivalencies/' => 'equivalencies#user'
 
   get '/admin'  => 'admin#index', :as => :admin
 

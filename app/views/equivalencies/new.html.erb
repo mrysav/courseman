@@ -1,0 +1,70 @@
+<% if current_user.incomplete?  %>
+<div class="alert alert-info">
+    Please complete <%= link_to 'your profile', profile_path %> before submitting a course for review.
+</div>
+<% end %>
+
+
+<%= form_for @equiv, :html => { :multipart => true, :role => :form, :class => "container" } do |equiv_form| %>
+
+<div class="form-group form-horizontal row">
+    <%= equiv_form.label 'Department for Review', :class => "col-sm-2 col-sm-offset-3 control-label" %>
+    <div class="col-sm-4">
+        <%= equiv_form.text_field :dept, :placeholder => 'History, Sociology...', :class => "form-control" %>
+    </div>
+</div>
+    
+<div class="row">
+    
+    <fieldset class="col-md-6">
+        <legend>Study Abroad Program Information</legend>
+        
+        <div class="form-group">
+            <%= equiv_form.label 'Program sponsor' %>
+            <%= equiv_form.text_field :program_sponsor, :class => "form-control" %>
+            <%= equiv_form.label 'Program name' %>
+            <%= equiv_form.text_field :program_name, :class => "form-control" %>
+            <%= equiv_form.label 'Program term' %>
+            <%= equiv_form.text_field :program_term, :class => "form-control" %>
+        </div>
+    </fieldset>
+
+    <fieldset class="col-md-6">
+        <legend>University Information</legend>
+        
+        <div id="get_university" class="form-group">
+            <%= label_tag :university_id %>
+            <%= select_tag(:university_id, options_for_select(@universities), {include_blank: 'Select a university', :class => "form-control"}) %>
+            <div style="margin-top: 15px" class="text-center"><a class="btn btn-default" id="add_university_link">Add university</a></div>
+        </div>
+
+        <div id="add_university" class="form-group">
+            <%= fields_for :university, University.new do |uni_form| %>
+            <%= uni_form.label 'University name' %><%= uni_form.text_field :name, :class => "form-control" %>
+            <%= uni_form.label 'University city' %><%= uni_form.text_field :city, :class => "form-control" %>
+            <%= uni_form.label 'University country' %><%= uni_form.text_field :country, :class => "form-control" %><br>
+            <% end %>
+        </div>
+    </fieldset>
+
+</div>
+
+<div class="row">
+    
+    <fieldset class="col-md-8 col-md-offset-2">
+        <legend class="legend">Foreign Course Information</legend>
+    
+        <%= equiv_form.label 'Course name' %><%= equiv_form.text_field :foreign_name, :class => "form-control" %>
+        <%= equiv_form.label 'Course code' %><%= equiv_form.text_field :foreign_code, :class => "form-control" %>
+        <%= equiv_form.label 'Language of Instruction' %><%= equiv_form.text_field :foreign_language, :class => "form-control" %>
+        <%= equiv_form.label 'Syllabus' %><%= equiv_form.file_field :syllabus %>
+    
+    </fieldset>
+
+</div>
+
+<div class="text-center row">
+    <%= equiv_form.submit :Submit, :id => :submit_equivalency, :class => "btn btn-default" %>
+</div>
+
+<% end %>
