@@ -10,5 +10,4 @@ ready = ->
         $('#university_id').val('')
         $('#add_university').show(400)
         
-$(document).ready(ready)
-$(document).on('page:load', ready)
+$(document).on('turbolinks:load', ready);

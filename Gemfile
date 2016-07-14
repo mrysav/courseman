@@ -49,9 +49,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 ruby "2.3.1"
 
-# For compatibility between the two
-gem 'jquery-turbolinks'
-
 # Use bootstrap
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
