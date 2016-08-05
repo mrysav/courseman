@@ -61,9 +61,12 @@ gem 'will_paginate-bootstrap'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-identity'
 
-# for file uploads
-gem 'carrierwave'
-# gem 'fog-aws'
+# Use Carrierwave with S3 extension for production storage
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'mini_magick'
+group :production do
+    gem 'fog-aws'
+end
 
 # for easy full text search
 gem 'pg_search'
